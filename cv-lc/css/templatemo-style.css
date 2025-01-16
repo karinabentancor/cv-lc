@@ -1,7 +1,6 @@
-
-
 html, body, .page-container {
     height: 100%;
+    font-weight:400;
 }
 
 body {
@@ -19,7 +18,7 @@ a {
 }
 
 a:hover {
-	color: rgb(255, 160, 51);
+	color: rgb(161, 161, 161);
 }
 
 p {
@@ -31,7 +30,7 @@ h2 {
 }
 
 .highlight {
-    color: #99FF66;
+    color: #0c21d8;
 }
 
 .page-container {
@@ -52,19 +51,14 @@ h2 {
     border-radius: 0;
 }
 
-.btn-primary {
-    background-color: white;
-    border: none;
-    color: #333;
+.btn-outline-secondary {
+    border: 2px solid white;
+    color: white;
+    font-weight: 300;
 }
 
-.btn-primary:hover,
-.btn-primary:focus {
-    color: #5cac38;
-    background-color: white;
-}
 
-/* Style the video: 100% width and height to cover the entire window */
+
 #bg-video {
     position: fixed;
     left: 50%;
@@ -138,13 +132,13 @@ h2 {
 
 .navbar .navbar-nav .nav-item.selected .nav-link,
 .navbar .navbar-nav .nav-item .nav-link:hover {
-    color: #99FF66;
-    border-bottom: 1px solid #99FF66;
+    color:#0c21d8;
+    border-bottom: 1px solid white;
 }
 
 .cd-slider-nav li.selected a+.circle,
 .navbar .navbar-nav .nav-item .nav-link:hover+.circle {
-    background-color: #99FF66;
+    background-color: #0c21d8;
 }
 
 .navbar-toggler-icon {
@@ -165,7 +159,7 @@ h2 {
 
 .tm-link-white:hover,
 .tm-link-white:focus {
-    color: #99FF66;
+    color: #0c21d8;
 }
 
 .cd-hero-slider {
@@ -245,7 +239,6 @@ h2 {
     justify-content: space-between;
 }
 
-/* Gallery page */
 .gallery-container {
     max-width: 1300px;
 }
@@ -263,9 +256,9 @@ h2 {
     margin-left: 10px;
     margin-right: 10px;
 	height: auto;
-	background: #3085a3;
+	background: #0c21d8;
 	text-align: center;
-	cursor: pointer;
+	cursor: none;
 }
 
 .gallery-slider figure img {
@@ -277,7 +270,7 @@ h2 {
 
 .gallery-slider figure figcaption {
 	padding: 1em;
-	color: #fff;
+	color:#0c21d8;
 	text-transform: uppercase;
 	font-size: 1.25em;
 	-webkit-backface-visibility: hidden;
@@ -298,8 +291,6 @@ h2 {
 	height: 100%;
 }
 
-/* Anchor will cover the whole item by default */
-/* For some effects it will show as a button */
 .gallery-slider figure figcaption > a {
 	z-index: 1000;
 	text-indent: 200%;
@@ -329,7 +320,7 @@ h2 {
 }
 
 .gallery-section {
-  background-color: #99ccff;
+  background-color: #e4e4e4;
 }
 
 .gallery-section .title {
@@ -337,12 +328,9 @@ h2 {
   margin-bottom: 80px;
 }
 
-/*---------------*/
-/***** Julia *****/
-/*---------------*/
 
 figure.effect-julia {
-	background: #2f3238;
+	background: #0c21d8;
 }
 
 figure.effect-julia img {
@@ -421,7 +409,7 @@ figure.effect-julia:hover p {
 
 .gallery-slider .slick-dots li.slick-active, 
 .gallery-slider .slick-dots li:hover {
-    background-color: #3CCDFF;
+    background-color: #0c21d8;
 }
 
 .gallery-slider .slick-dots li {
@@ -433,15 +421,13 @@ figure.effect-julia:hover p {
     transition: all 0.3s ease;
 }
 
-/* About page */
 .tm-about-container {
-    border-top: 1px solid white;
+    border-top: 1px solid #0c21d8;
     padding-top: 50px;
     padding-bottom: 50px;
     border-bottom: 1px solid white;
 }
 
-/* Contact page */
 .tm-contact-left {
     padding-right: 55px;
 }
@@ -458,7 +444,7 @@ figure.effect-julia:hover p {
 }
 
 .form-control:focus {
-    border-bottom: 1px solid #99FF66;
+    border-bottom: 1px solid #0c21d8;
     outline: 0;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -532,7 +518,7 @@ figure.effect-julia:hover p {
         position: absolute;
         top: 63px;
         right: 0;
-        background: rgb(54 75 96);
+        background: #fdff91;
         border-radius: 5px;
     }
 
@@ -606,12 +592,6 @@ figure.effect-julia:hover p {
     }
 }
 
-/* Preloader 
-	https://ihatetomatoes.net/create-custom-preloading-screen/
-*/
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
    #loader-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 2000; }
    #loader { display: block; position: relative; left: 50%; top: 50%; width: 150px; height: 150px; margin: -75px 0 0 -75px; border-radius: 50%; border: 3px solid transparent; border-top-color: #3498db; /* Chrome, Opera 15+, Safari 5+ */
    	animation: spin 2s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */ z-index: 2001; }
@@ -657,4 +637,3 @@ border-top-color: #f9c922; /* Chrome, Opera 15+, Safari 5+ */ animation: spin 1.
 }
 /* JavaScript Turned Off */
 .no-js #loader-wrapper { display: none; }
-/*============ Preloader ends ==================================*/

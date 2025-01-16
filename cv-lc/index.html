@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luna Curto     ______________</title>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/slick.css" type="text/css" /> 
     <link rel="stylesheet" href="css/templatemo-style.css">
@@ -13,7 +14,7 @@
 </head>
 <body>
     <video autoplay muted loop id="bg-video">
-        <source src="video/background-video.mp4" type="video/mp4">
+        <source src="media/background-video.mp4" type="video/mp4">
     </video>
     <div class="page-container">
       <div class="container-fluid">
@@ -61,17 +62,52 @@
               <div class="d-flex position-relative tm-border-top tm-border-bottom intro-container">
                 <div class="intro-left tm-bg-dark">
                   
-                 
-                <div class="intro-right">
-                  <img src="img/home-img-1.jpg" alt="Image" class="img-fluid intro-img-1">
-                  <img src="img/home-img-2.jpg" alt="Image" class="img-fluid intro-img-2">
-                </div>
-              </div>
+                  <div class="container mt-5">
+                    <div class="intro-right">
+                     
+                      
+                      <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                        
+                        <div class="carousel-indicators">
+                          <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                          <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                          <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                          <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                          <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                        </div>
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <img src="media/queda lo áspero.png" class="d-block w-100" alt="queda lo áspero">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="media/trapito.jpg" class="d-block w-100" alt="trapito">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="https://via.placeholder.com/800x400?text=Imagen+3" class="d-block w-100" alt="Imagen 3">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="https://via.placeholder.com/800x400?text=Imagen+4" class="d-block w-100" alt="Imagen 4">
+                          </div>
+                        </div>
+                  
+                        
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Anterior</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Siguiente</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  
                
               </div>
               <div class="text-center">
-                <a href="#0" data-page-no="2" class="btn btn-primary tm-intro-btn tm-page-link">
-                  Tutti 
+                <a href="#0" data-page-no="2" class="btn btn-outline-secondary tm-intro-btn tm-page-link">
+                  TUTTI
                 </a>
               </div>            
             </div>            
@@ -82,10 +118,10 @@
               <div class="circle intro-circle-2"></div>
               <div class="mx-auto tm-border-top gallery-slider">
                 <figure class="effect-julia item">
-                    <img src="img/gallery-img-01.jpg" alt="Image">
+                    <img src="media/queda lo áspero.png" alt="Image">
                     <figcaption>
                         <div>
-                            <p>something</p>
+                            <p>queda lo áspero</p>
                         </div>
                         <a href="#">Ver más</a>
                     </figcaption>
@@ -169,10 +205,12 @@
                   <p>
                     Escuela de poesía Más acá de los mundos. </p>
                     <br>
+
                   <h3>Poesía sobre ruedas (2024)</h3>
                   <p>
                    Alianza francesa de Montevideo. </p>
                   <br>
+
                   <hr>
                 <h2 class="mb-4">Participaciones</h1>
                
@@ -180,6 +218,8 @@
                 <p>
                   Instalación sonora e interrogación gráfica.
                 Museo de la memoria. </p>
+
+                
               </div>              
             </div>
           </li>
@@ -189,6 +229,14 @@
                 
               </div>
               <div class="row">
+                <div class="col-md-6 tm-contact-right">                  
+                  <div>
+                   <a href="mailto:info@company.com" class="tm-link-white">lunacurtoc@gmail.com</a>
+                  </div>
+                  <div class="tm-mb-45">
+                     <a href="tel:0100200340" class="tm-link-white">Montevideo, Uruguay</a>
+                  </div>
+                </div>
                 <div class="col-md-6 tm-contact-left">
                   <form action="#" method="POST" class="contact-form">
                     <div class="input-group tm-mb-30">
@@ -201,17 +249,9 @@
                         <textarea rows="5" name="message" class="textarea form-control rounded-0 border-top-0 border-end-0 border-start-0" placeholder="Mensaje"></textarea>
                     </div>
                     <div class="input-group justify-content-end">
-                        <input type="submit" class="btn btn-primary tm-btn-pad-2" value="Enviar">
+                        <input type="submit" class="btn btn-outline-secondary tm-btn-pad-2" value="ENVIAR">
                     </div>
                   </form>
-                </div>
-                <div class="col-md-6 tm-contact-right">                  
-                  <div>
-                   <a href="mailto:info@company.com" class="tm-link-white">lunacurtoc@gmail.com</a>
-                  </div>
-                  <div class="tm-mb-45">
-                     <a href="tel:0100200340" class="tm-link-white">Montevideo, Uruguay</a>
-                  </div>
                 </div>
               </div>
             </div>            
@@ -235,5 +275,6 @@
   <script src="js/bootstrap.min.js"></script>
   <script src="js/slick.js"></script>
   <script src="js/templatemo-script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -52,11 +52,18 @@ h2 {
 }
 
 .btn-outline-secondary {
-    border: 2px solid white;
+    border: 3px solid white;
     color: white;
-    font-weight: 300;
+    background: none;
+    font-weight: 500;
 }
 
+.btn-outline-secondary:hover {
+    border: 3px solid #0c21d8;
+    color: #0c21d8;
+     background: none;
+    font-weight: 500;
+}
 
 
 #bg-video {

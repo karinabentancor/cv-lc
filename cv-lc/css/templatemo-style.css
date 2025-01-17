@@ -139,8 +139,8 @@ h2 {
 
 .navbar .navbar-nav .nav-item.selected .nav-link,
 .navbar .navbar-nav .nav-item .nav-link:hover {
-    color:#0c21d8;
-    border-bottom: 1px solid white;
+    color:#8d91ac;
+    border-bottom: 1px solid #0c21d8;
 }
 
 .cd-slider-nav li.selected a+.circle,
@@ -153,7 +153,7 @@ h2 {
 }
 
 .navbar-toggler {
-    border: 1px solid rgba(255,255,255,1);
+    border: 1px solid #0c21d8;
 }
 
 .navbar-toggler:focus {
@@ -327,7 +327,7 @@ h2 {
 }
 
 .gallery-section {
-  background-color: #e4e4e4;
+  background-color:#0c21d8;
 }
 
 .gallery-section .title {
@@ -474,19 +474,11 @@ figure.effect-julia:hover p {
     padding: 10px 38px;
 }
 
-.map-outer{
-    position:relative;
-}
-
-.gmap-canvas {
-    overflow:hidden;
-    background:none!important;
-}
-
-.map-outer,
-.gmap-canvas {
-    height:200px;
-    width:100%;
+.btn-outline-secondary:hover {
+    background-color: #0c21d8;
+    border-color: #0c21d8;
+    align-items: flex-end;
+    color:white;
 }
 
 .tm-footer-right {
@@ -525,7 +517,8 @@ figure.effect-julia:hover p {
         position: absolute;
         top: 63px;
         right: 0;
-        background: #fdff91;
+        background: #0c21d8;
+        color: white;
         border-radius: 5px;
     }
 
@@ -600,29 +593,27 @@ figure.effect-julia:hover p {
 }
 
    #loader-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 2000; }
-   #loader { display: block; position: relative; left: 50%; top: 50%; width: 150px; height: 150px; margin: -75px 0 0 -75px; border-radius: 50%; border: 3px solid transparent; border-top-color: #3498db; /* Chrome, Opera 15+, Safari 5+ */
-   	animation: spin 2s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */ z-index: 2001; }
+   #loader { display: block; position: relative; left: 50%; top: 50%; width: 150px; height: 150px; margin: -75px 0 0 -75px; border-radius: 50%; border: 3px solid transparent; animation: spin 2s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */ z-index: 2001; }
    #loader:before { content: ""; position: absolute; top: 5px; left: 5px; right: 5px; bottom: 5px; border-radius: 50%; border: 3px solid transparent;
-   	border-top-color: #e74c3c; /* Chrome, Opera 15+, Safari 5+ */
    animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */ }
    #loader:after { content: ""; position: absolute; top: 15px; left: 15px; right: 15px; bottom: 15px; border-radius: 50%; border: 3px solid transparent;
-border-top-color: #f9c922; /* Chrome, Opera 15+, Safari 5+ */ animation: spin 1.5s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */ }
-@keyframes spin {
-	0%   {  /* Chrome, Opera 15+, Safari 3.1+ */  /* IE 9 */
-		transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
+   }
+	0%   { 
+		transform: rotate(0deg);  
 	}
-	100% {  /* Chrome, Opera 15+, Safari 3.1+ */  /* IE 9 */
-		transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
+	100% {  
+		transform: rotate(360deg);  
 	}
-}
 
-#loader-wrapper .loader-section { position: fixed; top: 0; width: 51%; height: 100%; background: #222222; z-index: 2000;  /* Chrome, Opera 15+, Safari 3.1+ */  /* IE 9 */ transform: translateX(0);  /* Firefox 16+, IE 10+, Opera */}
+@-webkit-keyframes spin { from { -webkit-transform: rotate(0deg); } to { -webkit-transform: rotate(360deg); } }
+
+
+#loader-wrapper .loader-section { position: fixed; top: 0; width: 51%; height: 100%; background: #0c21d8; z-index: 2000;  /* Chrome, Opera 15+, Safari 3.1+ */  /* IE 9 */ transform: translateX(0);  /* Firefox 16+, IE 10+, Opera */}
 
 #loader-wrapper .loader-section.section-left { left: 0; }
 
 #loader-wrapper .loader-section.section-right { right: 0; }
 
-/* Loaded */
 .loaded #loader-wrapper .loader-section.section-left {  /* Chrome, Opera 15+, Safari 3.1+ */  /* IE 9 */
 	transform: translateX(-100%);  /* Firefox 16+, IE 10+, Opera */  
 	transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
@@ -642,5 +633,5 @@ border-top-color: #f9c922; /* Chrome, Opera 15+, Safari 5+ */ animation: spin 1.
 	transform: translateY(-100%);  /* Firefox 16+, IE 10+, Opera */  
 	transition: all 0.3s 1s ease-out;
 }
-/* JavaScript Turned Off */
+
 .no-js #loader-wrapper { display: none; }

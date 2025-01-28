@@ -200,6 +200,9 @@ h2 {
 
 .tm-bg-dark {
     background-color: rgba(0,0,0,0.3);
+    margin-bottom: 40px;
+    margin-block: 50px;
+    padding: 3em;
 }
 
 .intro-left {
@@ -236,6 +239,7 @@ h2 {
 
 .tm-intro-btn {
     margin-top: 25px;
+    align-items: flex-end;
 }
 
 .tm-footer {
@@ -519,11 +523,11 @@ figure.effect-julia:hover p {
         right: 0;
         background: #0c21d8;
         color: white;
-        border-radius: 5px;
+       
     }
 
     .navbar .navbar-nav .nav-item {
-        margin-bottom: 20px;
+        margin-bottom: 10px;
     }
 
     .page-left,

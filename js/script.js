@@ -2,8 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const pages = document.querySelectorAll('.page');
     const navLinks = document.querySelectorAll('.nav-link');
     const navItems = document.querySelectorAll('.nav-item');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const navMenu = document.getElementById('nav-menu');
     const contactForm = document.getElementById('contact-form');
     const notification = document.getElementById('notification');
 
@@ -12,19 +10,10 @@ document.addEventListener('DOMContentLoaded', function() {
         navItems.forEach(item => item.classList.remove('selected'));
 
         const targetPage = document.getElementById(`page-${pageNumber}`);
-        const targetNavItem = document.querySelector(`[data-page="${pageNumber}"]`).closest('.nav-item');
+        const targetNavItem = document.querySelector(`[data-page="${pageNumber}"]`)?.closest('.nav-item');
 
-        if (targetPage) {
-            targetPage.classList.add('active');
-        }
-        if (targetNavItem) {
-            targetNavItem.classList.add('selected');
-        }
-
-        if (navMenu.classList.contains('active')) {
-            navMenu.classList.remove('active');
-            mobileMenu.classList.remove('active');
-        }
+        if (targetPage) targetPage.classList.add('active');
+        if (targetNavItem) targetNavItem.classList.add('selected');
     }
 
     navLinks.forEach(link => {
@@ -35,43 +24,27 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    document.querySelector('.tm-intro-btn').addEventListener('click', function(e) {
-        e.preventDefault();
-        const pageNumber = this.getAttribute('data-page');
-        showPage(pageNumber);
-    });
-
-    mobileMenu.addEventListener('click', function() {
-        navMenu.classList.toggle('active');
-        this.classList.toggle('active');
+    document.querySelectorAll('.tm-intro-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const pageNumber = this.getAttribute('data-page');
+            showPage(pageNumber);
+        });
     });
 
     function initCarousel(carouselId) {
         const carousel = document.getElementById(carouselId);
         if (!carousel) return;
 
-        const inner = carousel.querySelector('.carousel-inner');
         const items = carousel.querySelectorAll('.carousel-item');
         const prevBtn = carousel.querySelector('.prev');
         const nextBtn = carousel.querySelector('.next');
         const indicators = carousel.querySelectorAll('.carousel-indicators button');
-        
         let currentIndex = 0;
 
         function showSlide(index) {
-            items.forEach((item, i) => {
-                item.classList.toggle('active', i === index);
-            });
-
-            if (indicators.length > 0) {
-                indicators.forEach((indicator, i) => {
-                    indicator.classList.toggle('active', i === index);
-                });
-            }
-
-            if (inner) {
-                inner.style.transform = `translateX(-${index * 100}%)`;
-            }
+            items.forEach((item, i) => item.classList.toggle('active', i === index));
+            indicators.forEach((indicator, i) => indicator.classList.toggle('active', i === index));
         }
 
         function nextSlide() {
@@ -84,13 +57,8 @@ document.addEventListener('DOMContentLoaded', function() {
             showSlide(currentIndex);
         }
 
-        if (nextBtn) {
-            nextBtn.addEventListener('click', nextSlide);
-        }
-
-        if (prevBtn) {
-            prevBtn.addEventListener('click', prevSlide);
-        }
+        if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+        if (prevBtn) prevBtn.addEventListener('click', prevSlide);
 
         indicators.forEach((indicator, index) => {
             indicator.addEventListener('click', () => {
@@ -102,25 +70,19 @@ document.addEventListener('DOMContentLoaded', function() {
         setInterval(nextSlide, 5000);
     }
 
-    initCarousel('main-carousel');
-    initCarousel('carousel-1');
-    initCarousel('carousel-2');
-    initCarousel('carousel-3');
+    // Inicializar todos los carouseles
+    ['main-carousel','carousel-1','carousel-2','carousel-3'].forEach(id => initCarousel(id));
 
     function showNotification(message, type = 'success') {
+        if (!notification) return;
         notification.textContent = message;
-        notification.className = `notification notification-${type}`;
-        notification.classList.add('show');
-
-        setTimeout(() => {
-            notification.classList.remove('show');
-        }, 3000);
+        notification.className = `notification notification-${type} show`;
+        setTimeout(() => notification.classList.remove('show'), 3000);
     }
 
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
             const formData = new FormData(this);
             const name = formData.get('name');
             const email = formData.get('email');
@@ -151,37 +113,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    const inputs = document.querySelectorAll('.form-control');
-    inputs.forEach(input => {
+    // Inputs focus / blur
+    document.querySelectorAll('.form-control').forEach(input => {
         input.addEventListener('blur', function() {
-            if (this.value.trim() === '') {
-                this.classList.add('error');
-            } else {
-                this.classList.remove('error');
-            }
+            this.classList.toggle('error', this.value.trim() === '');
         });
-
         input.addEventListener('focus', function() {
             this.classList.remove('error');
         });
     });
 
-    window.addEventListener('load', function() {
+    // Loader fadeout
+    window.addEventListener('load', () => {
         document.body.classList.add('loaded');
-        
-        setTimeout(() => {
-            const loaderWrapper = document.getElementById('loader-wrapper');
-            if (loaderWrapper) {
-                loaderWrapper.style.display = 'none';
-            }
-        }, 1500);
+        const loaderWrapper = document.getElementById('loader-wrapper');
+        if (loaderWrapper) loaderWrapper.style.display = 'none';
     });
 
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
+    // Animaciones de entrada
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -198,27 +148,24 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 
-    const buttons = document.querySelectorAll('.btn');
-    buttons.forEach(btn => {
-        btn.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-2px)';
-            this.style.boxShadow = '0 5px 15px rgba(12, 33, 216, 0.3)';
+    // Botones hover
+    document.querySelectorAll('.btn').forEach(btn => {
+        btn.addEventListener('mouseenter', () => {
+            btn.style.transform = 'translateY(-2px)';
+            btn.style.boxShadow = '0 5px 15px rgba(12, 33, 216, 0.3)';
         });
-
-        btn.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-            this.style.boxShadow = 'none';
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transform = 'translateY(0)';
+            btn.style.boxShadow = 'none';
         });
     });
 
+    // Swipe para móviles
     let touchStartY = 0;
     let touchEndY = 0;
 
-    document.addEventListener('touchstart', function(e) {
-        touchStartY = e.changedTouches[0].screenY;
-    });
-
-    document.addEventListener('touchend', function(e) {
+    document.addEventListener('touchstart', e => touchStartY = e.changedTouches[0].screenY);
+    document.addEventListener('touchend', e => {
         touchEndY = e.changedTouches[0].screenY;
         handleSwipe();
     });
@@ -226,33 +173,21 @@ document.addEventListener('DOMContentLoaded', function() {
     function handleSwipe() {
         const swipeThreshold = 50;
         const diff = touchStartY - touchEndY;
+        const currentPageElement = document.querySelector('.page.active');
+        if (!currentPageElement) return;
 
+        const currentPageNumber = parseInt(currentPageElement.id.split('-')[1]);
         if (Math.abs(diff) > swipeThreshold) {
-            const currentPageElement = document.querySelector('.page.active');
-            if (currentPageElement) {
-                const currentPageId = currentPageElement.id;
-                const currentPageNumber = parseInt(currentPageId.split('-')[1]);
-                
-                if (diff > 0 && currentPageNumber < 5) {
-                    showPage(currentPageNumber + 1);
-                } else if (diff < 0 && currentPageNumber > 1) {
-                    showPage(currentPageNumber - 1);
-                }
-            }
+            if (diff > 0) showPage(Math.min(currentPageNumber + 1, pages.length));
+            else showPage(Math.max(currentPageNumber - 1, 1));
         }
     }
-
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', e => {
         const currentPageElement = document.querySelector('.page.active');
-        if (currentPageElement) {
-            const currentPageId = currentPageElement.id;
-            const currentPageNumber = parseInt(currentPageId.split('-')[1]);
-            
-            if (e.key === 'ArrowRight' && currentPageNumber < 5) {
-                showPage(currentPageNumber + 1);
-            } else if (e.key === 'ArrowLeft' && currentPageNumber > 1) {
-                showPage(currentPageNumber - 1);
-            }
-        }
+        if (!currentPageElement) return;
+
+        const currentPageNumber = parseInt(currentPageElement.id.split('-')[1]);
+        if (e.key === 'ArrowRight') showPage(Math.min(currentPageNumber + 1, pages.length));
+        if (e.key === 'ArrowLeft') showPage(Math.max(currentPageNumber - 1, 1));
     });
 });

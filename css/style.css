@@ -64,17 +64,19 @@ h3 {
 
 .nav-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     max-width: 1860px;
     margin: 0 auto;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .navbar-brand {
     font-size: 1.8rem;
     color: #0c21d8;
     font-weight: 500;
+    margin-right: auto;
 }
 
 .navbar-nav {
@@ -82,6 +84,8 @@ h3 {
     list-style: none;
     align-items: center;
     flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-item {
@@ -159,7 +163,7 @@ h3 {
 
 .carousel-container {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     margin: 0;
     padding: 0;
 }
@@ -186,6 +190,32 @@ h3 {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.carousel-indicators button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.carousel-indicators button.active,
+.carousel-indicators button:hover {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(255, 255, 255, 0.8);
 }
 
 .tm-bg-dark {
@@ -270,23 +300,30 @@ figure.effect-julia:hover p {
 .btn-outline-secondary {
     border: 2px solid #0c21d8;
     color: #0c21d8;
-    background: transparent;
+    background: white;
     font-weight: 500;
 }
 
 .btn-outline-secondary:hover {
-    background-color: #0c21d8;
+    background-color: rgb(254, 254, 254,0.8);
+    border: 2px solid white;
     color: white;
+    background: none;
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(12, 33, 216, 0.3);
 }
 
 .contact-section {
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: none;
+    width: 100%;
+    margin: 0;
     padding: 2rem;
     background-color: #0c21d8;
     color: white;
+    min-height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .contact-container {
@@ -294,6 +331,8 @@ figure.effect-julia:hover p {
     flex-direction: row;
     gap: 4rem;
     align-items: flex-start;
+    max-width: 1200px;
+    width: 100%;
 }
 
 .contact-form-container {
@@ -316,6 +355,23 @@ figure.effect-julia:hover p {
     color: rgba(255,255,255,0.8);
 }
 
+.contact-form .form-control:focus {
+    border-color: rgba(255,255,255,0.9);
+    color: white;
+}
+
+.contact-info {
+    color: white;
+}
+
+.contact-item {
+    color: white;
+}
+
+.tm-link-white {
+    color: white !important;
+}
+
 .contact-form button {
     width: 100%;
 }
@@ -335,6 +391,9 @@ figure.effect-julia:hover p {
     border-radius: 12px;
     overflow: hidden;
     width: 100%;
+    background-color: rgba(12, 33, 216, 0.1);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(12, 33, 216, 0.1);
 }
 
 .participation-item .carousel-container {
@@ -359,18 +418,58 @@ figure.effect-julia:hover p {
     object-fit: cover;
 }
 
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    font-size: 24px;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.carousel-control:hover {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.carousel-control.prev {
+    left: 20px;
+}
+
+.carousel-control.next {
+    right: 20px;
+}
+
 @media (max-width: 992px) {
     .nav-container {
-        flex-direction: column;
-        align-items: flex-start;
+        justify-content: flex-end;
+        align-items: center;
     }
+    
+    .navbar-brand {
+        margin-right: auto;
+    }
+    
     .navbar-nav {
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: flex-end;
+        width: auto;
     }
+    
+    .nav-item {
+        margin: 0 10px;
+    }
+    
     .nav-link {
         text-align: right;
-        padding: 10px 0;
+        padding: 10px 15px;
+        font-size: 1.2rem;
     }
+    
     .contact-container {
         flex-direction: column;
     }
@@ -380,6 +479,19 @@ figure.effect-julia:hover p {
     h2 { font-size: 1.5rem; }
     figure.effect-julia img { height: 200px; }
     .carousel-item img { height: 300px; }
+    
+    .navbar {
+        padding: 0 15px;
+    }
+    
+    .nav-item {
+        margin: 0 5px;
+    }
+    
+    .nav-link {
+        font-size: 1.1rem;
+        padding: 8px 12px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -387,6 +499,19 @@ figure.effect-julia:hover p {
     figure.effect-julia img { height: 180px; }
     .carousel-item img { height: 250px; }
     .btn { font-size: 1.1rem; padding: 10px 20px; }
+    
+    .navbar-brand {
+        font-size: 1.5rem;
+    }
+    
+    .nav-link {
+        font-size: 1rem;
+        padding: 6px 10px;
+    }
+    
+    .nav-item {
+        margin: 0 3px;
+    }
 }
 
 @media (min-width: 1200px) {

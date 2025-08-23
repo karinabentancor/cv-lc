@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const pages = document.querySelectorAll('.page');
     const navLinks = document.querySelectorAll('.nav-link');
     const navItems = document.querySelectorAll('.nav-item');
+    const navbarBrand = document.querySelector('.navbar-brand');
     const contactForm = document.getElementById('contact-form');
     const notification = document.getElementById('notification');
 
@@ -23,6 +24,14 @@ document.addEventListener('DOMContentLoaded', function() {
             showPage(pageNumber);
         });
     });
+
+    if (navbarBrand) {
+        navbarBrand.addEventListener('click', function(e) {
+            e.preventDefault();
+            const pageNumber = this.getAttribute('data-page');
+            showPage(pageNumber);
+        });
+    }
 
     document.querySelectorAll('.tm-intro-btn').forEach(btn => {
         btn.addEventListener('click', function(e) {
@@ -70,8 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
         setInterval(nextSlide, 5000);
     }
 
-    // Inicializar todos los carouseles
-    ['main-carousel','carousel-1','carousel-2','carousel-3'].forEach(id => initCarousel(id));
+    ['main-carousel','carousel-1','carousel-2','carousel-3','carousel-4'].forEach(id => initCarousel(id));
 
     function showNotification(message, type = 'success') {
         if (!notification) return;
@@ -113,7 +121,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Inputs focus / blur
     document.querySelectorAll('.form-control').forEach(input => {
         input.addEventListener('blur', function() {
             this.classList.toggle('error', this.value.trim() === '');
@@ -123,14 +130,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Loader fadeout
     window.addEventListener('load', () => {
         document.body.classList.add('loaded');
         const loaderWrapper = document.getElementById('loader-wrapper');
         if (loaderWrapper) loaderWrapper.style.display = 'none';
     });
 
-    // Animaciones de entrada
     const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -148,7 +153,6 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 
-    // Botones hover
     document.querySelectorAll('.btn').forEach(btn => {
         btn.addEventListener('mouseenter', () => {
             btn.style.transform = 'translateY(-2px)';
@@ -160,7 +164,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Swipe para móviles
     let touchStartY = 0;
     let touchEndY = 0;
 
@@ -182,6 +185,7 @@ document.addEventListener('DOMContentLoaded', function() {
             else showPage(Math.max(currentPageNumber - 1, 1));
         }
     }
+
     document.addEventListener('keydown', e => {
         const currentPageElement = document.querySelector('.page.active');
         if (!currentPageElement) return;

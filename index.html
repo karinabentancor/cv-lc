@@ -11,14 +11,13 @@
     <div class="page-container">
         <nav class="navbar" id="tm-nav">
             <div class="nav-container">
-                <a class="navbar-brand" href="#" data-page="2">luna curto</a>
-                <button class="navbar-toggler" id="mobile-menu">
+                <a class="navbar-brand" href="#" data-page="1">luna curto</a>
                     <span></span>
                     <span></span>
                     <span></span>
                 </button>
                 <ul class="navbar-nav" id="nav-menu">
-                    <li class="nav-item selected">
+                    <li class="nav-item">
                         <a class="nav-link" href="#" data-page="2">visuales</a>
                         <div class="circle"></div>
                     </li>
@@ -39,7 +38,38 @@
         </nav>
 
         <main class="main-content">
-            <section class="page active" id="page-2">
+            <section class="page active" id="page-1">
+                <div class="home-section">
+                    <div class="carousel-container tm-bg-dark">
+                        <div class="carousel" id="main-carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="media/queda lo áspero.png" alt="queda lo áspero">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="media/visual2.png" alt="feliz">
+                                </div>                            
+                                <div class="carousel-item">
+                                    <img src="media/trapito.jpg" alt="trapito">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="media/visual1.png" alt="feliz">
+                                </div>
+                            </div>
+                            <div class="carousel-indicators">
+                                <button class="active" data-slide="0"></button>
+                                <button data-slide="1"></button>
+                                <button data-slide="2"></button>
+                                <button data-slide="3"></button>
+                            </div>
+                        </div>
+                        <div class="intro-btn-container">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="page" id="page-2">
                 <div class="gallery-section">
                     <div class="gallery-container">
                         <div class="gallery-grid">
@@ -220,7 +250,8 @@
                                     <input name="email" type="email" class="form-control" placeholder="Email" required>
                                 </div>
                                 <div class="input-group tm-mb-30">
-                                    <textarea rows="5" name="message" class="form-control" placeholder="Mensaje" required></textarea>
+                                    <textarea rows="5" name="message" class="form-control" placeholder="Mensaje" required>
+                                </textarea>
                                 </div>
                                 <div class="input-group justify-content-end">
                                     <button type="submit" class="btn btn-outline-secondary tm-btn-pad-2">ENVIAR</button>

@@ -35,12 +35,10 @@ p {
 
 h2 {
     font-size: 1.8rem;
-    margin-bottom: 2rem;
     font-weight: 300;
 }
 
 h3 {
-    margin-bottom: 1rem;
     font-weight: 300;
 }
 
@@ -281,8 +279,7 @@ figure.effect-julia figcaption {
     justify-content: center;
     padding: 1em;
     color: #0c21d8;
-    text-transform: uppercase;
-    font-size: 1.1em;
+    font-size: 1.5em;
 }
 
 figure.effect-julia p {
@@ -346,7 +343,6 @@ figure.effect-julia:hover p {
     justify-content: center;
     margin-top: 80px;
 }
-
 .contact-container {
     display: flex;
     flex-direction: row;
@@ -355,26 +351,33 @@ figure.effect-julia:hover p {
     max-width: 1200px;
     width: 100%;
     justify-content: flex-end;
+    font-family: inherit; /* Hereda la tipografía del elemento padre */
+    text-align: right; /* Alinea todo el contenido a la derecha */
 }
 
 .contact-form-container {
     flex: 1;
     display: flex;
     justify-content: flex-end;
+    text-align: right;
 }
 
 .contact-form {
     width: 100%;
     max-width: 500px;
+    font-family: inherit;
+    text-align: right;
 }
 
 .contact-form .input-group.justify-content-end {
     display: flex;
     justify-content: flex-end;
+    text-align: right;
 }
 
 .contact-form .form-control {
     font-size: 1.2rem;
+    font-family: inherit; /* Usa la misma tipografía */
     padding: 15px;
     color: white;
     background-color: transparent;
@@ -383,10 +386,15 @@ figure.effect-julia:hover p {
     border-radius: 6px;
     width: 100%;
     outline: none;
+    text-align: right; /* Texto dentro del input alineado a la derecha */
+    direction: rtl; /* Para que el cursor empiece desde la derecha */
 }
 
 .contact-form .form-control::placeholder {
     color: rgba(255,255,255,0.8);
+    font-family: inherit;
+    text-align: right;
+    direction: rtl;
 }
 
 .contact-form .form-control:focus {
@@ -396,14 +404,20 @@ figure.effect-julia:hover p {
 
 .contact-info {
     color: white;
+    font-family: inherit;
+    text-align: right;
 }
 
 .contact-item {
     color: white;
+    font-family: inherit;
+    text-align: right;
 }
 
 .tm-link-white {
     color: white !important;
+    font-family: inherit;
+    text-align: right;
 }
 
 .content-section {
@@ -411,8 +425,43 @@ figure.effect-julia:hover p {
     max-width: 1200px;
     margin: 0 auto;
     margin-top: 80px;
+    font-family: inherit;
+    text-align: right;
 }
 
+/* Responsividad para pantallas pequeñas */
+@media (max-width: 768px) {
+    .contact-container {
+        flex-direction: column;
+        gap: 2rem;
+        text-align: right;
+    }
+    
+    .contact-form-container {
+        width: 100%;
+        justify-content: flex-end;
+    }
+    
+    .contact-form {
+        max-width: 100%;
+    }
+    
+    .content-section {
+        padding: 1rem;
+        text-align: right;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-container {
+        gap: 1.5rem;
+    }
+    
+    .contact-form .form-control {
+        font-size: 1.1rem;
+        padding: 12px;
+    }
+}
 .participation-item {
     margin-bottom: 2rem;
 }

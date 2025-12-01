@@ -6,6 +6,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contact-form');
     const notification = document.getElementById('notification');
 
+    // Inicializar video con autoplay y loop
+    const mainVideo = document.querySelector('#main-carousel video');
+    if (mainVideo) {
+        mainVideo.play().catch(err => console.log('Autoplay bloqueado:', err));
+    }
+
     function showPage(pageNumber) {
         pages.forEach(page => page.classList.remove('active'));
         navItems.forEach(item => item.classList.remove('selected'));
@@ -15,6 +21,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (targetPage) targetPage.classList.add('active');
         if (targetNavItem) targetNavItem.classList.add('selected');
+
+        // Reiniciar video cuando vuelves a page-1
+        if (pageNumber === '1' && mainVideo) {
+            mainVideo.currentTime = 0;
+            mainVideo.play().catch(err => console.log('Play error:', err));
+        }
     }
 
     navLinks.forEach(link => {
@@ -76,10 +88,14 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-        setInterval(nextSlide, 5000);
+        // Solo autoplay para el carousel principal (si tiene más de 1 item)
+        if (carouselId === 'main-carousel' && items.length > 1) {
+            setInterval(nextSlide, 5000);
+        }
     }
 
-    ['main-carousel','carousel-1','carousel-2','carousel-3','carousel-4'].forEach(id => initCarousel(id));
+    // Inicializar todos los carousels - AGREGADO carousel-5
+    ['main-carousel', 'carousel-1', 'carousel-2', 'carousel-3', 'carousel-4', 'carousel-5'].forEach(id => initCarousel(id));
 
     function showNotification(message, type = 'success') {
         if (!notification) return;

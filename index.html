@@ -11,11 +11,9 @@
     <div class="page-container">
         <nav class="navbar" id="tm-nav">
             <div class="nav-container">
-                <a class="navbar-brand" href="#" data-page="1">luna curto</a>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+                <a class="navbar-brand" href="#" data-page="1">
+                    <img src="media/logo.png" alt="luna curto">
+                </a>
                 <ul class="navbar-nav" id="nav-menu">
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-page="2">visuales</a>
@@ -45,10 +43,10 @@
                             <video src="media/video.mov" autoplay loop muted playsinline></video>
                         </div>
                         <div class="images-container">
-                            <div class="image-block">
+                            <div class="image-block" data-participation="impune">
                                 <img src="media/impune2.jpg" alt="impune">
                             </div>
-                            <div class="image-block">
+                            <div class="image-block" data-participation="a-las-cinco">
                                 <img src="media/a las cinco de la tarde.JPG" alt="a las cinco de la tarde">
                             </div>
                         </div>
@@ -123,8 +121,18 @@
 
             <section class="page" id="page-3">
                 <div class="content-section">
+                    <div class="poem-index">
+                        <h3>Poemas</h3>
+                        <ul>
+                            <li><a href="#pasible">Pasible</a></li>
+                            <li><a href="#revista-larus">Revista Larus</a></li>
+                            <li><a href="#arana-poesia">Araña la poesía</a></li>
+                            <li><a href="#poesia-ruedas">Poesía sobre ruedas</a></li>
+                        </ul>
+                    </div>
+
                     <div class="tm-bg-dark content-pad">
-                        <div class="publication">
+                        <div class="publication" id="pasible">
                             <h3><strong>Pasible</strong></h3>
                             <p>Inédito 2024</p>
                             <div class="poem-text">
@@ -186,25 +194,28 @@ de paredón.</pre>
                         </div>
                         
                         <h2 class="mb-4">Publicaciones</h2>
-<div class="publication">
-    <div class="publication">
-    <h3><strong>Revista Larus (2025)</strong></h3>
-    <p><a href="https://revistalarus.com/Tres-poemas-de-Luna-Curto" target="_blank">https://revistalarus.com/Tres-poemas-de-Luna-Curto</a></p>
-</div>
-    <h3><strong>Araña la poesía (2024)</strong></h3>
-    <p>Editorial Secreta</p>
-</div>
-<div class="publication">
-    <h3><strong>Poesía sobre ruedas (2024)</strong></h3>
-    <p>Estuario Editora</p>
-</div>
+                        
+                        <div class="publication" id="revista-larus">
+                            <h3><strong>Revista Larus (2025)</strong></h3>
+                            <p><a href="https://revistalarus.com/Tres-poemas-de-Luna-Curto" target="_blank">https://revistalarus.com/Tres-poemas-de-Luna-Curto</a></p>
+                        </div>
+                        
+                        <div class="publication" id="arana-poesia">
+                            <h3><strong>Araña la poesía (2024)</strong></h3>
+                            <p>Editorial Secreta</p>
+                        </div>
+                        
+                        <div class="publication" id="poesia-ruedas">
+                            <h3><strong>Poesía sobre ruedas (2024)</strong></h3>
+                            <p>Estuario Editora</p>
+                        </div>
                     </div>
                 </div>
             </section>
 
             <section class="page" id="page-4">
                 <div class="content-section">
-                    <div class="participation-item">
+                    <div class="participation-item" id="a-tiempo">
                         <div class="tm-bg-dark content-pad">
                             <h3>A tiempo(2025)</h3>
                             <p>44º Festival Internacional de Poesía</p>
@@ -215,14 +226,12 @@ de paredón.</pre>
                                             <img src="media/l'epine.jpg" alt="l'epine">
                                         </div>
                                     </div>
-                                    <button class="carousel-control prev">&#8249;</button>
-                                    <button class="carousel-control next">&#8250;</button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="participation-item">
+                    <div class="participation-item" id="lepine">
                         <div class="tm-bg-dark content-pad">
                             <h3>L'epine (2024)</h3>
                             <p>Poesía sobre ruedas. Alianza Francesa de Montevideo.</p>
@@ -233,14 +242,12 @@ de paredón.</pre>
                                             <img src="media/l'epine.jpg" alt="l'epine">
                                         </div>
                                     </div>
-                                    <button class="carousel-control prev">&#8249;</button>
-                                    <button class="carousel-control next">&#8250;</button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="participation-item">
+                    <div class="participation-item" id="a-las-cinco">
                         <div class="tm-bg-dark content-pad">
                             <h3>Poema sin título (2024)</h3>
                             <p>A las cinco de la tarde. Proyección de poemas en espacios públicos de poetas locales contemporáneos.</p>
@@ -251,14 +258,12 @@ de paredón.</pre>
                                             <img src="media/a las cinco de la tarde.JPG" alt="a las cinco de la tarde">
                                         </div>
                                     </div>
-                                    <button class="carousel-control prev">&#8249;</button>
-                                    <button class="carousel-control next">&#8250;</button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="participation-item">
+                    <div class="participation-item" id="pasible-expo">
                         <div class="tm-bg-dark content-pad">
                             <h3>Pasible (2024)</h3>
                             <p>Poema finalista del Premio Iberoamericano Federico García Lorca. Exposición de las obras finalistas en Centro Cultural de España</p>
@@ -269,14 +274,12 @@ de paredón.</pre>
                                             <img src="media/garcia lorca.JPG" alt="Premio García Lorca">
                                         </div>
                                     </div>
-                                    <button class="carousel-control prev">&#8249;</button>
-                                    <button class="carousel-control next">&#8250;</button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="participation-item">
+                    <div class="participation-item" id="impune">
                         <div class="tm-bg-dark content-pad">
                             <h3>IMPUNE (2023)</h3>
                             <p>Instalación sonora e interrogación gráfica. Museo de la Memoria.</p>
@@ -287,8 +290,6 @@ de paredón.</pre>
                                             <img src="media/impune2.jpg" alt="impune">
                                         </div>
                                     </div>
-                                    <button class="carousel-control prev">&#8249;</button>
-                                    <button class="carousel-control next">&#8250;</button>
                                 </div>
                             </div>
                         </div>
@@ -337,6 +338,64 @@ de paredón.</pre>
 
     <div id="notification" class="notification"></div>
 
-    <script src="js/script.js"></script>
+    <script>
+        // Navegación entre páginas
+        document.querySelectorAll('[data-page]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const pageNum = this.getAttribute('data-page');
+                
+                document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+                document.getElementById(`page-${pageNum}`).classList.add('active');
+                
+                document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('selected'));
+                this.closest('.nav-item')?.classList.add('selected');
+            });
+        });
+
+        // Click en imágenes del home para ir a participaciones
+        document.querySelectorAll('.image-block[data-participation]').forEach(block => {
+            block.addEventListener('click', function() {
+                const participationId = this.getAttribute('data-participation');
+                
+                // Ir a la página de participaciones
+                document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+                document.getElementById('page-4').classList.add('active');
+                
+                // Actualizar navegación
+                document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('selected'));
+                document.querySelector('[data-page="4"]').closest('.nav-item').classList.add('selected');
+                
+                setTimeout(() => {
+                    const element = document.getElementById(participationId);
+                    if (element) {
+                        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }, 100);
+            });
+        });
+
+        document.querySelectorAll('.poem-index a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const element = document.getElementById(targetId);
+                
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        document.getElementById('contact-form')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Mensaje enviado correctamente');
+            this.reset();
+        });
+
+        window.addEventListener('load', () => {
+            document.querySelector('.nav-item')?.classList.add('selected');
+        });
+    </script>
 </body>
 </html>

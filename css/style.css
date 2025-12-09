@@ -106,7 +106,7 @@ h3 {
     color: #1c1c1e;
     display: block;
     transition: all 0.3s ease;
-    font-weight: 500;
+    font-weight: 700;
     font-family: 'Courier New', monospace;
     letter-spacing: 0.5px;
 }
@@ -237,9 +237,11 @@ h3 {
 
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    padding: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    padding: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 figure.effect-julia {
@@ -255,7 +257,7 @@ figure.effect-julia {
 
 figure.effect-julia img {
     width: 100%;
-    height: 240px;
+    height: 400px;
     object-fit: cover;
     transition: opacity 1s, transform 1s;
 }
@@ -295,6 +297,94 @@ figure.effect-julia:hover img {
 figure.effect-julia:hover p {
     opacity: 1;
     transform: translate3d(0,0,0);
+}
+
+.visual-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.95);
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.visual-modal-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.visual-modal-content img {
+    max-width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.visual-modal-info {
+    color: white;
+    text-align: center;
+    margin-top: 20px;
+    padding: 0 20px;
+}
+
+.visual-modal-info h3 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    font-weight: 300;
+}
+
+.visual-modal-info p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.visual-modal-year {
+    position: absolute;
+    right: -60px;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    opacity: 0.7;
+}
+
+.visual-modal-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: white;
+    font-size: 40px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.visual-modal-close:hover {
+    color: #ccc;
 }
 
 .btn {
@@ -462,10 +552,6 @@ figure.effect-julia:hover p {
     scroll-margin-top: 100px;
 }
 
-/* ============================================
-   NUEVA SECCIÓN DE PARTICIPACIONES
-   ============================================ */
-
 .participation-item {
     margin-bottom: 5rem;
     scroll-margin-top: 100px;
@@ -497,7 +583,7 @@ figure.effect-julia:hover p {
 .participation-image-wrapper {
     position: relative;
     width: 100%;
-    padding-bottom: 75%; /* Aspect ratio 4:3 */
+    padding-bottom: 75%;
     overflow: hidden;
     border-radius: 8px;
 }
@@ -516,10 +602,6 @@ figure.effect-julia:hover p {
 .participation-image-wrapper:hover img {
     filter: blur(0) grayscale(100%);
 }
-
-/* ============================================
-   MEDIA QUERIES
-   ============================================ */
 
 @media (max-width: 992px) {
     .nav-container {
@@ -589,11 +671,25 @@ figure.effect-julia:hover p {
         width: 100vw;
         height: 100vh;
     }
+
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        padding: 30px 20px;
+    }
+
+    figure.effect-julia img {
+        height: 350px;
+    }
+
+    .visual-modal-year {
+        right: -50px;
+        font-size: 1rem;
+    }
 }
 
 @media (max-width: 768px) {
     h2 { font-size: 1.5rem; }
-    figure.effect-julia img { height: 200px; }
     
     .navbar {
         padding: 12px 15px;
@@ -659,7 +755,45 @@ figure.effect-julia:hover p {
         height: 100vh;
     }
 
-    /* Animaciones elegantes para móviles - Participaciones */
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        padding: 20px 15px;
+    }
+
+    figure.effect-julia img {
+        height: 300px;
+    }
+
+    .visual-modal-content {
+        max-width: 95%;
+        padding: 0 10px;
+    }
+
+    .visual-modal-content img {
+        max-height: 60vh;
+    }
+
+    .visual-modal-close {
+        top: -35px;
+        font-size: 35px;
+    }
+
+    .visual-modal-info h3 {
+        font-size: 1.4rem;
+    }
+
+    .visual-modal-info p {
+        font-size: 1rem;
+    }
+
+    .visual-modal-year {
+        position: static;
+        transform: none;
+        margin-top: 15px;
+        text-align: center;
+    }
+
     .participation-images {
         grid-template-columns: 1fr;
         gap: 25px;
@@ -704,7 +838,6 @@ figure.effect-julia:hover p {
 
 @media (max-width: 480px) {
     body { font-size: 16px; }
-    figure.effect-julia img { height: 180px; }
     .btn { font-size: 1.1rem; padding: 10px 20px; }
     
     .navbar {
@@ -780,6 +913,41 @@ figure.effect-julia:hover p {
     .video-container {
         width: 100vw;
         height: 100vh;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 15px 10px;
+    }
+
+    figure.effect-julia img {
+        height: 250px;
+    }
+
+    .visual-modal-content img {
+        max-height: 55vh;
+    }
+
+    .visual-modal-close {
+        top: -30px;
+        font-size: 30px;
+    }
+
+    .visual-modal-info h3 {
+        font-size: 1.2rem;
+    }
+
+    .visual-modal-info p {
+        font-size: 0.9rem;
+    }
+
+    .visual-modal-year {
+        position: static;
+        transform: none;
+        margin-top: 10px;
+        text-align: center;
+        font-size: 1rem;
     }
 }
 

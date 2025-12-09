@@ -80,7 +80,7 @@ h3 {
 }
 
 .navbar-brand img {
-    height: 40px;
+    height: 120px;
     width: auto;
     display: block;
 }
@@ -462,82 +462,72 @@ figure.effect-julia:hover p {
     scroll-margin-top: 100px;
 }
 
+/* ============================================
+   NUEVA SECCIÓN DE PARTICIPACIONES
+   ============================================ */
+
 .participation-item {
-    margin-bottom: 3rem;
+    margin-bottom: 5rem;
+    scroll-margin-top: 100px;
 }
 
-.participation-item .tm-bg-dark {
-    padding: 2rem;
-    border-radius: 12px;
-    overflow: hidden;
-    width: 100%;
-    max-width: 600px;
-    background-color: transparent;
-    backdrop-filter: none;
-    border: none;
-    margin: 0 auto;
+.participation-header {
+    margin-bottom: 2rem;
+    text-align: right;
 }
 
-.participation-item h3 {
+.participation-header h3 {
+    font-size: 1.8rem;
     margin-bottom: 0.5rem;
+    font-weight: 400;
 }
 
-.participation-item p {
-    margin-bottom: 1.5rem;
+.participation-header p {
+    color: #666;
+    font-size: 1.1rem;
 }
 
-.participation-item .carousel-container {
-    width: 100%;
-    overflow: visible;
-    position: relative;
-    padding: 0;
-}
-
-.participation-item .carousel-inner {
-    display: flex;
-    gap: 15px;
-    transition: all 0.5s ease;
-}
-
-.participation-item .carousel-item {
-    min-width: 100%;
-    height: auto;
-    transition: all 0.5s ease;
-}
-
-.participation-item .carousel-item img {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
-    filter: blur(8px) grayscale(100%);
-    transition: filter 0.5s ease, transform 0.5s ease;
-}
-
-.participation-item .carousel-container:hover .carousel-inner {
+.participation-images {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+    gap: 20px;
+    width: 100%;
 }
 
-.participation-item .carousel-container:hover .carousel-item {
-    min-width: auto;
+.participation-image-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 75%; /* Aspect ratio 4:3 */
+    overflow: hidden;
+    border-radius: 8px;
 }
 
-.participation-item .carousel-container:hover .carousel-item img {
+.participation-image-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(8px) grayscale(100%);
+    transition: filter 0.6s ease;
+}
+
+.participation-image-wrapper:hover img {
     filter: blur(0) grayscale(100%);
 }
 
-.carousel-control {
-    display: none;
-}
+/* ============================================
+   MEDIA QUERIES
+   ============================================ */
 
 @media (max-width: 992px) {
     .nav-container {
         justify-content: space-between;
         align-items: center;
         max-width: 100%;
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
         gap: 10px;
     }
     
@@ -546,20 +536,20 @@ figure.effect-julia:hover p {
     }
     
     .navbar-brand {
-        margin-right: 0;
-        width: 100%;
-        text-align: center;
+        margin-right: auto;
+        width: auto;
+        text-align: left;
     }
     
     .navbar-brand img {
-        height: 32px;
-        margin: 0 auto;
+        height: 180px;
+        margin: 0;
     }
     
     .navbar-nav {
         flex-direction: row;
-        justify-content: center;
-        width: 100%;
+        justify-content: flex-end;
+        width: auto;
         flex-wrap: nowrap;
     }
     
@@ -584,10 +574,6 @@ figure.effect-julia:hover p {
     }
 
     .btn-outline-secondary {
-        max-width: 100%;
-    }
-
-    .participation-item .tm-bg-dark {
         max-width: 100%;
     }
 
@@ -626,7 +612,7 @@ figure.effect-julia:hover p {
     }
     
     .navbar-brand img {
-        height: 28px;
+        height: 60px;
         margin: 0 auto;
     }
     
@@ -660,10 +646,6 @@ figure.effect-julia:hover p {
         justify-content: center;
     }
 
-    .participation-item .carousel-container:hover .carousel-inner {
-        grid-template-columns: 1fr;
-    }
-
     .home-grid {
         grid-template-columns: 1fr;
     }
@@ -675,6 +657,48 @@ figure.effect-julia:hover p {
     .video-container {
         width: 100vw;
         height: 100vh;
+    }
+
+    /* Animaciones elegantes para móviles - Participaciones */
+    .participation-images {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .participation-image-wrapper {
+        animation: slideInUp 0.6s ease forwards;
+        opacity: 0;
+    }
+
+    .participation-image-wrapper:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+
+    .participation-image-wrapper:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .participation-image-wrapper:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+
+    @keyframes slideInUp {
+        from {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .participation-image-wrapper img {
+        filter: blur(4px) grayscale(100%);
+    }
+
+    .participation-image-wrapper:hover img {
+        filter: blur(0) grayscale(100%);
     }
 }
 
@@ -700,7 +724,7 @@ figure.effect-julia:hover p {
     }
     
     .navbar-brand img {
-        height: 26px;
+        height: 40px;
         margin: 0 auto;
     }
     

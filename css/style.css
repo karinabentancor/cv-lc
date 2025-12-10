@@ -11,7 +11,7 @@ html, body, .page-container {
 }
 
 body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Courier New', monospace;
     font-size: 18px;
     font-weight: 300;
     color: #1c1c1e;
@@ -61,7 +61,7 @@ h3 {
     background: #ffffff;
     border-top: 1px solid rgba(0,0,0,0.08);
     border-bottom: none;
-    padding: 15px 30px;
+    padding: 8px 20px;
 }
 
 .nav-container {
@@ -80,7 +80,7 @@ h3 {
 }
 
 .navbar-brand img {
-    height: 120px;
+    height: 90px;
     width: auto;
     display: block;
 }
@@ -96,12 +96,12 @@ h3 {
 
 .nav-item {
     position: relative;
-    margin: 0 15px;
+    margin: 0 8px;
 }
 
 .nav-link {
-    font-size: 1.1rem;
-    padding: 12px 20px;
+    font-size: 0.95rem;
+    padding: 8px 12px;
     border-bottom: 1px solid transparent;
     color: #1c1c1e;
     display: block;
@@ -169,6 +169,7 @@ h3 {
     min-height: 100vh;
     max-height: 100vh;
     overflow: hidden;
+    padding-bottom: 0;
 }
 
 .home-grid {
@@ -393,22 +394,23 @@ figure.effect-julia:hover p {
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease;
+    font-family: 'Courier New', monospace;
 }
 
 .btn-outline-secondary {
-    border: 2px solid #1c1c1e;
-    color: #1c1c1e;
-    background: white;
+    border: 2px solid white;
+    color: white;
+    background: transparent;
     font-weight: 300;
     max-width: 200px;
 }
 
 .btn-outline-secondary:hover {
-    background-color: #1c1c1e;
-    border: 2px solid #1c1c1e;
-    color: white;
+    background-color: white;
+    border: 2px solid white;
+    color: #000000;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(28, 28, 30, 0.3);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
 }
 
 .contact-section {
@@ -416,7 +418,7 @@ figure.effect-julia:hover p {
     width: 100%;
     margin: 0;
     padding: 2rem;
-    background-color: #1c1c1e;
+    background-color: #000000;
     color: white;
     min-height: 100vh;
     display: flex;
@@ -429,32 +431,32 @@ figure.effect-julia:hover p {
     display: flex;
     flex-direction: row;
     gap: 4rem;
-    align-items: flex-start;
+    align-items: center;
     max-width: 1200px;
     width: 100%;
-    justify-content: flex-end;
+    justify-content: center;
     font-family: inherit;
-    text-align: right;
+    text-align: center;
 }
 
 .contact-form-container {
     flex: 1;
     display: flex;
-    justify-content: flex-end;
-    text-align: right;
+    justify-content: center;
+    text-align: center;
 }
 
 .contact-form {
     width: 100%;
     max-width: 500px;
     font-family: inherit;
-    text-align: right;
+    text-align: left;
 }
 
 .contact-form .input-group.justify-content-end {
     display: flex;
-    justify-content: flex-end;
-    text-align: right;
+    justify-content: center;
+    text-align: left;
 }
 
 .contact-form .form-control {
@@ -468,15 +470,13 @@ figure.effect-julia:hover p {
     border-radius: 6px;
     width: 100%;
     outline: none;
-    text-align: right;
-    direction: rtl;
+    text-align: left;
 }
 
 .contact-form .form-control::placeholder {
     color: rgba(255,255,255,0.8);
     font-family: inherit;
-    text-align: right;
-    direction: rtl;
+    text-align: left;
 }
 
 .contact-form .form-control:focus {
@@ -487,28 +487,29 @@ figure.effect-julia:hover p {
 .contact-info {
     color: white;
     font-family: inherit;
-    text-align: right;
+    text-align: center;
 }
 
 .contact-item {
     color: white;
     font-family: inherit;
-    text-align: right;
+    text-align: center;
 }
 
 .tm-link-white {
     color: white !important;
     font-family: inherit;
-    text-align: right;
+    text-align: center;
 }
 
 .content-section {
-    padding: 2rem;
+    padding: 2rem 3rem;
     max-width: 1200px;
     margin: 0 auto;
     margin-top: 40px;
     font-family: inherit;
     text-align: right;
+    overflow-x: hidden;
 }
 
 .poem-index {
@@ -550,6 +551,25 @@ figure.effect-julia:hover p {
 
 .publication {
     scroll-margin-top: 100px;
+    margin-bottom: 8rem;
+}
+
+.publication h3 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.poem-text {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.poem-text pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
 }
 
 .participation-item {
@@ -565,7 +585,7 @@ figure.effect-julia:hover p {
 .participation-header h3 {
     font-size: 1.8rem;
     margin-bottom: 0.5rem;
-    font-weight: 400;
+    font-weight: 700;
 }
 
 .participation-header p {
@@ -610,11 +630,11 @@ figure.effect-julia:hover p {
         max-width: 100%;
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 8px;
     }
     
     .navbar {
-        padding: 12px 20px;
+        padding: 8px 15px;
     }
     
     .navbar-brand {
@@ -624,7 +644,7 @@ figure.effect-julia:hover p {
     }
     
     .navbar-brand img {
-        height: 180px;
+        height: 85px;
         margin: 0;
     }
     
@@ -636,14 +656,14 @@ figure.effect-julia:hover p {
     }
     
     .nav-item {
-        margin: 0 5px;
+        margin: 0 4px;
         flex-shrink: 0;
     }
     
     .nav-link {
         text-align: center;
-        padding: 8px 12px;
-        font-size: 0.9rem;
+        padding: 8px 10px;
+        font-size: 0.85rem;
         white-space: nowrap;
     }
     
@@ -661,6 +681,7 @@ figure.effect-julia:hover p {
 
     .home-grid {
         grid-template-columns: 1fr;
+        height: 100vh;
     }
 
     .images-container {
@@ -686,19 +707,23 @@ figure.effect-julia:hover p {
         right: -50px;
         font-size: 1rem;
     }
+
+    .content-section {
+        padding: 2rem;
+    }
 }
 
 @media (max-width: 768px) {
     h2 { font-size: 1.5rem; }
     
     .navbar {
-        padding: 12px 15px;
+        padding: 8px 12px;
     }
     
     .nav-container {
         max-width: 100%;
         flex-direction: column;
-        gap: 10px;
+        gap: 8px;
     }
     
     .navbar-brand {
@@ -708,7 +733,7 @@ figure.effect-julia:hover p {
     }
     
     .navbar-brand img {
-        height: 60px;
+        height: 90px;
         margin: 0 auto;
     }
     
@@ -719,13 +744,13 @@ figure.effect-julia:hover p {
     }
     
     .nav-item {
-        margin: 0 4px;
+        margin: 0 3px;
         flex-shrink: 0;
     }
     
     .nav-link {
-        font-size: 0.85rem;
-        padding: 8px 10px;
+        font-size: 0.8rem;
+        padding: 6px 8px;
         white-space: nowrap;
     }
 
@@ -744,6 +769,7 @@ figure.effect-julia:hover p {
 
     .home-grid {
         grid-template-columns: 1fr;
+        height: 100vh;
     }
 
     .images-container {
@@ -834,6 +860,10 @@ figure.effect-julia:hover p {
     .participation-image-wrapper:hover img {
         filter: blur(0) grayscale(100%);
     }
+
+    .content-section {
+        padding: 1.5rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -841,13 +871,13 @@ figure.effect-julia:hover p {
     .btn { font-size: 1.1rem; padding: 10px 20px; }
     
     .navbar {
-        padding: 10px 10px;
+        padding: 6px 8px;
     }
     
     .nav-container {
         max-width: 100%;
         flex-direction: column;
-        gap: 8px;
+        gap: 6px;
     }
     
     .navbar-brand {
@@ -857,7 +887,7 @@ figure.effect-julia:hover p {
     }
     
     .navbar-brand img {
-        height: 40px;
+        height: 80px;
         margin: 0 auto;
     }
     
@@ -868,13 +898,13 @@ figure.effect-julia:hover p {
     }
     
     .nav-link {
-        font-size: 0.75rem;
-        padding: 6px 8px;
+        font-size: 0.7rem;
+        padding: 5px 6px;
         white-space: nowrap;
     }
     
     .nav-item {
-        margin: 0 3px;
+        margin: 0 2px;
         flex-shrink: 0;
     }
 
@@ -904,6 +934,7 @@ figure.effect-julia:hover p {
 
     .home-grid {
         grid-template-columns: 1fr;
+        height: 100vh;
     }
 
     .images-container {

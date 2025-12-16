@@ -51,6 +51,7 @@ h3 {
     min-height: 100vh;
 }
 
+/* NAVBAR - Logo más grande, espacio blanco reducido */
 .navbar {
     position: fixed;
     bottom: 0;
@@ -61,7 +62,7 @@ h3 {
     background: #ffffff;
     border-top: 1px solid rgba(0,0,0,0.08);
     border-bottom: none;
-    padding: 8px 20px;
+    padding: 4px 15px;
 }
 
 .nav-container {
@@ -72,17 +73,22 @@ h3 {
     margin: 0 auto;
     flex-wrap: wrap;
     width: 100%;
+    gap: 15px;
 }
 
 .navbar-brand {
     font-size: 0;
     margin-right: auto;
+    padding: 0;
+    line-height: 0;
 }
 
 .navbar-brand img {
-    height: 90px;
+    height: 55px;
     width: auto;
     display: block;
+    margin: 0;
+    padding: 0;
 }
 
 .navbar-nav {
@@ -92,15 +98,17 @@ h3 {
     flex-wrap: wrap;
     margin: 0;
     padding: 0;
+    gap: 20px;
 }
 
 .nav-item {
     position: relative;
-    margin: 0 8px;
+    margin: 0;
 }
 
+/* NAVBAR - Todos bold, current regular y negro */
 .nav-link {
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     padding: 8px 12px;
     border-bottom: 1px solid transparent;
     color: #1c1c1e;
@@ -108,12 +116,12 @@ h3 {
     transition: all 0.3s ease;
     font-weight: 700;
     font-family: 'Courier New', monospace;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
 }
 
-.nav-item.selected .nav-link,
-.nav-link:hover {
-    color: #666;
+.nav-item.selected .nav-link {
+    font-weight: 400;
+    color: #1c1c1e;
 }
 
 .nav-item.selected::after {
@@ -151,25 +159,33 @@ h3 {
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* VIDEO - Sin scroll, fijo y entero en todos los tamaños */
 .home-section {
-    position: relative;
+    position: fixed;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
     margin: 0;
     padding: 0;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
+    left: 0;
+    top: 0;
 }
 
 #page-1 {
     margin-top: 0;
     min-height: 100vh;
     max-height: 100vh;
+    height: 100vh;
     overflow: hidden;
     padding-bottom: 0;
+    position: fixed;
+    width: 100vw;
+    left: 0;
+    top: 0;
+}
+
+#page-1.active {
+    position: fixed;
 }
 
 .home-grid {
@@ -188,12 +204,28 @@ h3 {
     align-items: center;
     justify-content: center;
     background: #ffffff;
+    padding: 0;
+    margin: 0;
 }
 
 .video-container video {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    filter: grayscale(100%) contrast(1.3);
+};
+    justify-content: center;
+    background: #000000;
+    padding: 0;
+    margin: 0;
+}
+
+.video-container video {
+    min-width: 100%;
+    min-height: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     filter: grayscale(100%) contrast(1.3);
 }
 
@@ -413,50 +445,54 @@ figure.effect-julia:hover p {
     box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
 }
 
+/* CONTACT - Fijo sin scroll, centrado en TODAS las pantallas */
 .contact-section {
-    max-width: none;
-    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     margin: 0;
-    padding: 2rem;
+    padding: 0;
     background-color: #000000;
     color: white;
-    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 0;
+    overflow: hidden;
 }
 
 .contact-container {
     display: flex;
-    flex-direction: row;
-    gap: 4rem;
+    flex-direction: column;
+    gap: 3rem;
     align-items: center;
-    max-width: 1200px;
-    width: 100%;
     justify-content: center;
-    font-family: inherit;
+    max-width: 500px;
+    width: 90%;
     text-align: center;
 }
 
 .contact-form-container {
-    flex: 1;
+    width: 100%;
     display: flex;
     justify-content: center;
-    text-align: center;
 }
 
 .contact-form {
     width: 100%;
     max-width: 500px;
-    font-family: inherit;
-    text-align: left;
+    text-align: center;
+}
+
+.contact-form .input-group {
+    text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 .contact-form .input-group.justify-content-end {
-    display: flex;
     justify-content: center;
-    text-align: left;
 }
 
 .contact-form .form-control {
@@ -470,13 +506,13 @@ figure.effect-julia:hover p {
     border-radius: 6px;
     width: 100%;
     outline: none;
-    text-align: left;
+    text-align: center;
 }
 
 .contact-form .form-control::placeholder {
     color: rgba(255,255,255,0.8);
     font-family: inherit;
-    text-align: left;
+    text-align: center;
 }
 
 .contact-form .form-control:focus {
@@ -486,19 +522,16 @@ figure.effect-julia:hover p {
 
 .contact-info {
     color: white;
-    font-family: inherit;
     text-align: center;
 }
 
 .contact-item {
     color: white;
-    font-family: inherit;
     text-align: center;
 }
 
 .tm-link-white {
     color: white !important;
-    font-family: inherit;
     text-align: center;
 }
 
@@ -507,7 +540,6 @@ figure.effect-julia:hover p {
     max-width: 1200px;
     margin: 0 auto;
     margin-top: 40px;
-    font-family: inherit;
     text-align: right;
     overflow-x: hidden;
 }
@@ -574,7 +606,8 @@ figure.effect-julia:hover p {
 
 .participation-item {
     margin-bottom: 5rem;
-    scroll-margin-top: 100px;
+    scroll-margin-top: 0;
+    padding-top: 0;
 }
 
 .participation-header {
@@ -630,22 +663,24 @@ figure.effect-julia:hover p {
         max-width: 100%;
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 8px;
+        gap: 6px;
     }
     
     .navbar {
-        padding: 8px 15px;
+        padding: 3px 10px;
     }
     
     .navbar-brand {
         margin-right: auto;
         width: auto;
         text-align: left;
+        padding: 0;
     }
     
     .navbar-brand img {
-        height: 85px;
+        height: 50px;
         margin: 0;
+        padding: 0;
     }
     
     .navbar-nav {
@@ -653,30 +688,19 @@ figure.effect-julia:hover p {
         justify-content: flex-end;
         width: auto;
         flex-wrap: nowrap;
+        gap: 6px;
     }
     
     .nav-item {
-        margin: 0 4px;
+        margin: 0;
         flex-shrink: 0;
     }
     
     .nav-link {
         text-align: center;
-        padding: 8px 10px;
-        font-size: 0.85rem;
+        padding: 4px 6px;
+        font-size: 0.75rem;
         white-space: nowrap;
-    }
-    
-    .contact-container {
-        flex-direction: column;
-    }
-
-    .contact-form-container {
-        justify-content: center;
-    }
-
-    .btn-outline-secondary {
-        max-width: 100%;
     }
 
     .home-grid {
@@ -691,6 +715,15 @@ figure.effect-julia:hover p {
     .video-container {
         width: 100vw;
         height: 100vh;
+        background: #000000;
+    }
+    
+    .video-container video {
+        min-width: 100%;
+        min-height: 100%;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
     .gallery-grid {
@@ -717,54 +750,45 @@ figure.effect-julia:hover p {
     h2 { font-size: 1.5rem; }
     
     .navbar {
-        padding: 8px 12px;
+        padding: 3px 8px;
     }
     
     .nav-container {
         max-width: 100%;
         flex-direction: column;
-        gap: 8px;
+        gap: 3px;
     }
     
     .navbar-brand {
         width: 100%;
         text-align: center;
         margin-right: 0;
+        padding: 0;
     }
     
     .navbar-brand img {
-        height: 90px;
+        height: 45px;
         margin: 0 auto;
+        padding: 0;
     }
     
     .navbar-nav {
         width: 100%;
         justify-content: center;
         flex-wrap: nowrap;
+        gap: 4px;
     }
     
     .nav-item {
-        margin: 0 3px;
+        margin: 0;
         flex-shrink: 0;
     }
     
     .nav-link {
-        font-size: 0.8rem;
-        padding: 6px 8px;
+        font-size: 0.7rem;
+        padding: 3px 5px;
         white-space: nowrap;
-    }
-
-    .contact-section {
-        padding: 1rem;
-    }
-
-    .contact-container {
-        gap: 2rem;
-        justify-content: center;
-    }
-
-    .contact-form-container {
-        justify-content: center;
+        letter-spacing: 0.3px;
     }
 
     .home-grid {
@@ -779,6 +803,15 @@ figure.effect-julia:hover p {
     .video-container {
         width: 100vw;
         height: 100vh;
+        background: #000000;
+    }
+    
+    .video-container video {
+        min-width: 100%;
+        min-height: 100%;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
     .gallery-grid {
@@ -871,54 +904,45 @@ figure.effect-julia:hover p {
     .btn { font-size: 1.1rem; padding: 10px 20px; }
     
     .navbar {
-        padding: 6px 8px;
+        padding: 2px 6px;
     }
     
     .nav-container {
         max-width: 100%;
         flex-direction: column;
-        gap: 6px;
+        gap: 2px;
     }
     
     .navbar-brand {
         width: 100%;
         text-align: center;
         margin-right: 0;
+        padding: 0;
     }
     
     .navbar-brand img {
-        height: 80px;
+        height: 40px;
         margin: 0 auto;
+        padding: 0;
     }
     
     .navbar-nav {
         width: 100%;
         justify-content: center;
         flex-wrap: nowrap;
+        gap: 3px;
     }
     
     .nav-link {
-        font-size: 0.7rem;
-        padding: 5px 6px;
+        font-size: 0.6rem;
+        padding: 2px 3px;
         white-space: nowrap;
+        letter-spacing: 0.2px;
     }
     
     .nav-item {
-        margin: 0 2px;
+        margin: 0;
         flex-shrink: 0;
-    }
-
-    .contact-section {
-        margin-top: 0;
-        margin-bottom: 80px;
-    }
-
-    .contact-form-container {
-        justify-content: center;
-    }
-
-    .contact-container {
-        justify-content: center;
     }
 
     .content-section {
@@ -944,6 +968,15 @@ figure.effect-julia:hover p {
     .video-container {
         width: 100vw;
         height: 100vh;
+        background: #000000;
+    }
+    
+    .video-container video {
+        min-width: 100%;
+        min-height: 100%;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
     .gallery-grid {

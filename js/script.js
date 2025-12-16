@@ -5,14 +5,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const navbarBrand = document.querySelector('.navbar-brand');
     const contactForm = document.getElementById('contact-form');
     const notification = document.getElementById('notification');
+    const modal = document.getElementById('visual-modal');
+    const modalImg = document.getElementById('visual-modal-img');
+    const modalTitle = document.getElementById('visual-modal-title');
+    const modalDesc = document.getElementById('visual-modal-desc');
+    const modalYear = document.getElementById('visual-modal-year');
+    const closeModal = document.querySelector('.visual-modal-close');
 
     // Inicializar video con autoplay y loop
-    const mainVideo = document.querySelector('#main-carousel video');
+    const mainVideo = document.querySelector('.video-container video');
     if (mainVideo) {
         mainVideo.play().catch(err => console.log('Autoplay bloqueado:', err));
     }
 
+    // FUNCIÓN PARA MOSTRAR PÁGINAS - Siempre vuelve arriba
     function showPage(pageNumber) {
+        // Scroll arriba SIEMPRE
+        window.scrollTo(0, 0);
+        document.querySelector('.main-content')?.scrollTo(0, 0);
+        
         pages.forEach(page => page.classList.remove('active'));
         navItems.forEach(item => item.classList.remove('selected'));
 
@@ -29,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // NAVEGACIÓN - Links normales
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -37,121 +49,99 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // NAVEGACIÓN - Logo (vuelve a página 1)
     if (navbarBrand) {
         navbarBrand.addEventListener('click', function(e) {
             e.preventDefault();
-            const pageNumber = this.getAttribute('data-page');
-            showPage(pageNumber);
+            showPage('1');
         });
     }
 
-    document.querySelectorAll('.tm-intro-btn').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            const pageNumber = this.getAttribute('data-page');
-            showPage(pageNumber);
+    // CLICKS EN IMÁGENES DEL HOME - Van a participaciones específicas
+    document.querySelectorAll('.image-block[data-participation]').forEach(block => {
+        block.addEventListener('click', function() {
+            const participationId = this.getAttribute('data-participation');
+            
+            // Cambiar a página 4
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById('page-4').classList.add('active');
+            
+            navItems.forEach(item => item.classList.remove('selected'));
+            document.querySelector('[data-page="4"]')?.closest('.nav-item')?.classList.add('selected');
+            
+            // Scroll directo al elemento SIN mostrar lo de arriba
+            setTimeout(() => {
+                const element = document.getElementById(participationId);
+                if (element) {
+                    const elementTop = element.offsetTop;
+                    window.scrollTo({ top: elementTop, behavior: 'smooth' });
+                }
+            }, 100);
         });
     });
 
-    function initCarousel(carouselId) {
-        const carousel = document.getElementById(carouselId);
-        if (!carousel) return;
-
-        const items = carousel.querySelectorAll('.carousel-item');
-        const prevBtn = carousel.querySelector('.prev');
-        const nextBtn = carousel.querySelector('.next');
-        const indicators = carousel.querySelectorAll('.carousel-indicators button');
-        let currentIndex = 0;
-
-        function showSlide(index) {
-            items.forEach((item, i) => item.classList.toggle('active', i === index));
-            indicators.forEach((indicator, i) => indicator.classList.toggle('active', i === index));
-        }
-
-        function nextSlide() {
-            currentIndex = (currentIndex + 1) % items.length;
-            showSlide(currentIndex);
-        }
-
-        function prevSlide() {
-            currentIndex = (currentIndex - 1 + items.length) % items.length;
-            showSlide(currentIndex);
-        }
-
-        if (nextBtn) nextBtn.addEventListener('click', nextSlide);
-        if (prevBtn) prevBtn.addEventListener('click', prevSlide);
-
-        indicators.forEach((indicator, index) => {
-            indicator.addEventListener('click', () => {
-                currentIndex = index;
-                showSlide(currentIndex);
-            });
+    // ÍNDICE DE POEMAS - Scroll suave
+    document.querySelectorAll('.poem-index a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const element = document.getElementById(targetId);
+            
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         });
+    });
 
-        // Solo autoplay para el carousel principal (si tiene más de 1 item)
-        if (carouselId === 'main-carousel' && items.length > 1) {
-            setInterval(nextSlide, 5000);
+    // MODAL DE VISUALES
+    document.querySelectorAll('.effect-julia').forEach(figure => {
+        figure.addEventListener('click', function() {
+            const img = this.querySelector('img');
+            const title = this.getAttribute('data-visual-title');
+            const desc = this.getAttribute('data-visual-desc');
+            const year = this.getAttribute('data-visual-year');
+            
+            modalImg.src = img.src;
+            modalTitle.textContent = title;
+            modalDesc.textContent = desc;
+            modalYear.textContent = year;
+            modal.style.display = 'flex';
+        });
+    });
+
+    closeModal?.addEventListener('click', function() {
+        modal.style.display = 'none';
+    });
+
+    modal?.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.style.display = 'none';
         }
-    }
+    });
 
-    // Inicializar todos los carousels - AGREGADO carousel-5
-    ['main-carousel', 'carousel-1', 'carousel-2', 'carousel-3', 'carousel-4', 'carousel-5'].forEach(id => initCarousel(id));
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal?.style.display === 'flex') {
+            modal.style.display = 'none';
+        }
+    });
 
-    function showNotification(message, type = 'success') {
-        if (!notification) return;
-        notification.textContent = message;
-        notification.className = `notification notification-${type} show`;
-        setTimeout(() => notification.classList.remove('show'), 3000);
-    }
-
+    // FORMULARIO DE CONTACTO
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            const formData = new FormData(this);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const message = formData.get('message');
-
-            if (!name || !email || !message) {
-                showNotification('Por favor completa todos los campos', 'error');
-                return;
-            }
-
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                showNotification('Por favor ingresa un email válido', 'error');
-                return;
-            }
-
-            const btn = this.querySelector('button[type="submit"]');
-            const originalText = btn.textContent;
-            btn.textContent = 'ENVIANDO...';
-            btn.disabled = true;
-
-            setTimeout(() => {
-                showNotification('¡Mensaje enviado con éxito!', 'success');
-                this.reset();
-                btn.textContent = originalText;
-                btn.disabled = false;
-            }, 1000);
+            alert('Mensaje enviado correctamente');
+            this.reset();
         });
     }
 
-    document.querySelectorAll('.form-control').forEach(input => {
-        input.addEventListener('blur', function() {
-            this.classList.toggle('error', this.value.trim() === '');
-        });
-        input.addEventListener('focus', function() {
-            this.classList.remove('error');
-        });
-    });
-
+    // LOADER
     window.addEventListener('load', () => {
         document.body.classList.add('loaded');
         const loaderWrapper = document.getElementById('loader-wrapper');
         if (loaderWrapper) loaderWrapper.style.display = 'none';
     });
 
+    // INTERSECTION OBSERVER para animaciones
     const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -169,10 +159,11 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 
+    // HOVER EN BOTONES
     document.querySelectorAll('.btn').forEach(btn => {
         btn.addEventListener('mouseenter', () => {
             btn.style.transform = 'translateY(-2px)';
-            btn.style.boxShadow = '0 5px 15px rgba(12, 33, 216, 0.3)';
+            btn.style.boxShadow = '0 5px 15px rgba(255, 255, 255, 0.3)';
         });
         btn.addEventListener('mouseleave', () => {
             btn.style.transform = 'translateY(0)';
@@ -180,6 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // NAVEGACIÓN TÁCTIL (swipe)
     let touchStartY = 0;
     let touchEndY = 0;
 
@@ -191,17 +183,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function handleSwipe() {
         const swipeThreshold = 50;
-        const diff = touchStartY - touchEndY;
         const currentPageElement = document.querySelector('.page.active');
         if (!currentPageElement) return;
 
         const currentPageNumber = parseInt(currentPageElement.id.split('-')[1]);
+        const diff = touchStartY - touchEndY;
+        
         if (Math.abs(diff) > swipeThreshold) {
             if (diff > 0) showPage(Math.min(currentPageNumber + 1, pages.length));
             else showPage(Math.max(currentPageNumber - 1, 1));
         }
     }
 
+    // NAVEGACIÓN CON TECLADO
     document.addEventListener('keydown', e => {
         const currentPageElement = document.querySelector('.page.active');
         if (!currentPageElement) return;

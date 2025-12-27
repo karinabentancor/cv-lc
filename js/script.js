@@ -12,15 +12,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalYear = document.getElementById('visual-modal-year');
     const closeModal = document.querySelector('.visual-modal-close');
 
-    // Inicializar video con autoplay y loop
     const mainVideo = document.querySelector('.video-container video');
     if (mainVideo) {
         mainVideo.play().catch(err => console.log('Autoplay bloqueado:', err));
     }
 
-    // FUNCIÓN PARA MOSTRAR PÁGINAS - Siempre vuelve arriba
     function showPage(pageNumber) {
-        // Scroll arriba SIEMPRE
         window.scrollTo(0, 0);
         document.querySelector('.main-content')?.scrollTo(0, 0);
         
@@ -33,14 +30,12 @@ document.addEventListener('DOMContentLoaded', function() {
         if (targetPage) targetPage.classList.add('active');
         if (targetNavItem) targetNavItem.classList.add('selected');
 
-        // Reiniciar video cuando vuelves a page-1
         if (pageNumber === '1' && mainVideo) {
             mainVideo.currentTime = 0;
             mainVideo.play().catch(err => console.log('Play error:', err));
         }
     }
 
-    // NAVEGACIÓN - Links normales
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -49,7 +44,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // NAVEGACIÓN - Logo (vuelve a página 1)
     if (navbarBrand) {
         navbarBrand.addEventListener('click', function(e) {
             e.preventDefault();
@@ -57,19 +51,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // CLICKS EN IMÁGENES DEL HOME - Van a participaciones específicas
     document.querySelectorAll('.image-block[data-participation]').forEach(block => {
         block.addEventListener('click', function() {
             const participationId = this.getAttribute('data-participation');
             
-            // Cambiar a página 4
             pages.forEach(page => page.classList.remove('active'));
             document.getElementById('page-4').classList.add('active');
             
             navItems.forEach(item => item.classList.remove('selected'));
             document.querySelector('[data-page="4"]')?.closest('.nav-item')?.classList.add('selected');
             
-            // Scroll directo al elemento SIN mostrar lo de arriba
             setTimeout(() => {
                 const element = document.getElementById(participationId);
                 if (element) {
@@ -80,7 +71,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // ÍNDICE DE POEMAS - Scroll suave
     document.querySelectorAll('.poem-index a').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -93,7 +83,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // MODAL DE VISUALES
     document.querySelectorAll('.effect-julia').forEach(figure => {
         figure.addEventListener('click', function() {
             const img = this.querySelector('img');
@@ -125,23 +114,47 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // FORMULARIO DE CONTACTO
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
-            alert('Mensaje enviado correctamente');
-            this.reset();
+            
+            const formData = new FormData(this);
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            
+            submitButton.textContent = 'ENVIANDO...';
+            submitButton.disabled = true;
+            
+            try {
+                const response = await fetch('https://formspree.io/f/xvzoavjj', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    alert('¡Mensaje enviado correctamente! Te responderé pronto.');
+                    this.reset();
+                } else {
+                    alert('Hubo un error al enviar el mensaje. Por favor intenta nuevamente.');
+                }
+            } catch (error) {
+                alert('Error de conexión. Por favor verifica tu internet e intenta nuevamente.');
+            } finally {
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            }
         });
     }
 
-    // LOADER
     window.addEventListener('load', () => {
         document.body.classList.add('loaded');
         const loaderWrapper = document.getElementById('loader-wrapper');
         if (loaderWrapper) loaderWrapper.style.display = 'none';
     });
 
-    // INTERSECTION OBSERVER para animaciones
     const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -159,7 +172,6 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 
-    // HOVER EN BOTONES
     document.querySelectorAll('.btn').forEach(btn => {
         btn.addEventListener('mouseenter', () => {
             btn.style.transform = 'translateY(-2px)';
@@ -169,39 +181,5 @@ document.addEventListener('DOMContentLoaded', function() {
             btn.style.transform = 'translateY(0)';
             btn.style.boxShadow = 'none';
         });
-    });
-
-    // NAVEGACIÓN TÁCTIL (swipe)
-    let touchStartY = 0;
-    let touchEndY = 0;
-
-    document.addEventListener('touchstart', e => touchStartY = e.changedTouches[0].screenY);
-    document.addEventListener('touchend', e => {
-        touchEndY = e.changedTouches[0].screenY;
-        handleSwipe();
-    });
-
-    function handleSwipe() {
-        const swipeThreshold = 50;
-        const currentPageElement = document.querySelector('.page.active');
-        if (!currentPageElement) return;
-
-        const currentPageNumber = parseInt(currentPageElement.id.split('-')[1]);
-        const diff = touchStartY - touchEndY;
-        
-        if (Math.abs(diff) > swipeThreshold) {
-            if (diff > 0) showPage(Math.min(currentPageNumber + 1, pages.length));
-            else showPage(Math.max(currentPageNumber - 1, 1));
-        }
-    }
-
-    // NAVEGACIÓN CON TECLADO
-    document.addEventListener('keydown', e => {
-        const currentPageElement = document.querySelector('.page.active');
-        if (!currentPageElement) return;
-
-        const currentPageNumber = parseInt(currentPageElement.id.split('-')[1]);
-        if (e.key === 'ArrowRight') showPage(Math.min(currentPageNumber + 1, pages.length));
-        if (e.key === 'ArrowLeft') showPage(Math.max(currentPageNumber - 1, 1));
     });
 });

@@ -84,7 +84,7 @@ h3 {
 }
 
 .navbar-brand img {
-    height: 90px;
+    height: 110px;
     width: auto;
     display: block;
     margin: 0;
@@ -669,7 +669,7 @@ figure.effect-julia:hover p {
     }
     
     .navbar-brand img {
-        height: 75px;
+        height: 90px;
         margin: 0;
         padding: 0;
     }
@@ -707,6 +707,7 @@ figure.effect-julia:hover p {
         width: 100vw;
         height: 100vh;
         background: #ffffff;
+        align-items: center;
     }
     
     .video-container video {
@@ -761,7 +762,7 @@ figure.effect-julia:hover p {
     }
     
     .navbar-brand img {
-        height: 70px;
+        height: 85px;
         margin: 0 auto;
         padding: 0;
     }
@@ -916,7 +917,7 @@ figure.effect-julia:hover p {
     }
     
     .navbar-brand img {
-        height: 60px;
+        height: 75px;
         margin: 0 auto;
         padding: 0;
     }

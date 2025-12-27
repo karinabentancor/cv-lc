@@ -464,6 +464,7 @@ figure.effect-julia:hover p {
     max-width: 500px;
     width: 90%;
     text-align: center;
+    padding-bottom: 150px;
 }
 
 .contact-form-container {
@@ -1080,7 +1081,7 @@ figure.effect-julia:hover p {
         max-width: 180px;
     }
 
-    
+    /* CONTACTO - Mucho espacio negro en pantallas grandes */
     .contact-section {
         padding: 4rem 12rem;
     }
@@ -1088,9 +1089,8 @@ figure.effect-julia:hover p {
     .contact-container {
         max-width: 550px;
         gap: 4rem;
-        padding-bottom: 180px;
-        margin-top: 8em;
-        
+        padding-bottom: 140px;
+        margin-top: 3rem;
     }
 
     .contact-form {

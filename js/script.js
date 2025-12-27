@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 message: this.querySelector('textarea[name="message"]').value
             };
             
-            emailjs.send('service_b1w9veh', 'template_q1k2rxf', templateParams)
+            emailjs.send('service_m71pnlh', 'template_q1k2rxf', templateParams)
                 .then(() => {
                     alert('¡Mensaje enviado correctamente! Te responderé pronto.');
                     contactForm.reset();

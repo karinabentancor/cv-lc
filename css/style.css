@@ -51,7 +51,7 @@ h3 {
     min-height: 100vh;
 }
 
-/* NAVBAR - Logo más grande, espacio blanco reducido */
+/* NAVBAR - Logo más grande, navbar más compacto */
 .navbar {
     position: fixed;
     bottom: 0;
@@ -62,7 +62,7 @@ h3 {
     background: #ffffff;
     border-top: 1px solid rgba(0,0,0,0.08);
     border-bottom: none;
-    padding: 4px 15px;
+    padding: 8px 15px;
 }
 
 .nav-container {
@@ -84,7 +84,7 @@ h3 {
 }
 
 .navbar-brand img {
-    height: 55px;
+    height: 90px;
     width: auto;
     display: block;
     margin: 0;
@@ -146,7 +146,7 @@ h3 {
 .page {
     display: none;
     min-height: calc(100vh - 160px);
-    padding-bottom: 80px;
+    padding-bottom: 100px;
 }
 
 .page.active {
@@ -212,20 +212,6 @@ h3 {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    filter: grayscale(100%) contrast(1.3);
-};
-    justify-content: center;
-    background: #000000;
-    padding: 0;
-    margin: 0;
-}
-
-.video-container video {
-    min-width: 100%;
-    min-height: 100%;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
     filter: grayscale(100%) contrast(1.3);
 }
 
@@ -353,12 +339,13 @@ figure.effect-julia:hover p {
 
 .visual-modal-content {
     position: relative;
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 85%;
+    max-height: 85vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     animation: zoomIn 0.3s ease;
+    padding: 40px 20px 20px 20px;
 }
 
 @keyframes zoomIn {
@@ -368,34 +355,37 @@ figure.effect-julia:hover p {
 
 .visual-modal-content img {
     max-width: 100%;
-    max-height: 70vh;
+    max-height: 55vh;
     object-fit: contain;
     border-radius: 8px;
+    margin-bottom: 20px;
 }
 
 .visual-modal-info {
     color: white;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 10px;
     padding: 0 20px;
+    max-width: 700px;
 }
 
 .visual-modal-info h3 {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
+    font-size: 1.6rem;
+    margin-bottom: 8px;
     font-weight: 300;
 }
 
 .visual-modal-info p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     opacity: 0.9;
-    max-width: 800px;
+    max-width: 100%;
     margin: 0 auto;
+    line-height: 1.5;
 }
 
 .visual-modal-year {
     position: absolute;
-    right: -60px;
+    right: -80px;
     top: 50%;
     transform: translateY(-50%) rotate(90deg);
     color: white;
@@ -407,13 +397,14 @@ figure.effect-julia:hover p {
 
 .visual-modal-close {
     position: absolute;
-    top: -40px;
-    right: 0;
+    top: 10px;
+    right: 10px;
     color: white;
     font-size: 40px;
     font-weight: 300;
     cursor: pointer;
     transition: color 0.3s ease;
+    z-index: 10;
 }
 
 .visual-modal-close:hover {
@@ -506,13 +497,13 @@ figure.effect-julia:hover p {
     border-radius: 6px;
     width: 100%;
     outline: none;
-    text-align: center;
+    text-align: right;
 }
 
 .contact-form .form-control::placeholder {
     color: rgba(255,255,255,0.8);
     font-family: inherit;
-    text-align: center;
+    text-align: right;
 }
 
 .contact-form .form-control:focus {
@@ -636,7 +627,7 @@ figure.effect-julia:hover p {
 .participation-image-wrapper {
     position: relative;
     width: 100%;
-    padding-bottom: 75%;
+    padding-bottom: 100%;
     overflow: hidden;
     border-radius: 8px;
 }
@@ -647,7 +638,7 @@ figure.effect-julia:hover p {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     filter: blur(8px) grayscale(100%);
     transition: filter 0.6s ease;
 }
@@ -663,11 +654,11 @@ figure.effect-julia:hover p {
         max-width: 100%;
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 6px;
+        gap: 8px;
     }
     
     .navbar {
-        padding: 3px 10px;
+        padding: 6px 10px;
     }
     
     .navbar-brand {
@@ -678,7 +669,7 @@ figure.effect-julia:hover p {
     }
     
     .navbar-brand img {
-        height: 50px;
+        height: 75px;
         margin: 0;
         padding: 0;
     }
@@ -688,7 +679,7 @@ figure.effect-julia:hover p {
         justify-content: flex-end;
         width: auto;
         flex-wrap: nowrap;
-        gap: 6px;
+        gap: 12px;
     }
     
     .nav-item {
@@ -698,8 +689,8 @@ figure.effect-julia:hover p {
     
     .nav-link {
         text-align: center;
-        padding: 4px 6px;
-        font-size: 0.75rem;
+        padding: 6px 10px;
+        font-size: 0.9rem;
         white-space: nowrap;
     }
 
@@ -715,15 +706,13 @@ figure.effect-julia:hover p {
     .video-container {
         width: 100vw;
         height: 100vh;
-        background: #000000;
+        background: #ffffff;
     }
     
     .video-container video {
-        min-width: 100%;
-        min-height: 100%;
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
     }
 
     .gallery-grid {
@@ -744,19 +733,24 @@ figure.effect-julia:hover p {
     .content-section {
         padding: 2rem;
     }
+
+    .participation-images {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
 }
 
 @media (max-width: 768px) {
     h2 { font-size: 1.5rem; }
     
     .navbar {
-        padding: 3px 8px;
+        padding: 5px 8px;
     }
     
     .nav-container {
         max-width: 100%;
         flex-direction: column;
-        gap: 3px;
+        gap: 4px;
     }
     
     .navbar-brand {
@@ -767,7 +761,7 @@ figure.effect-julia:hover p {
     }
     
     .navbar-brand img {
-        height: 45px;
+        height: 70px;
         margin: 0 auto;
         padding: 0;
     }
@@ -776,7 +770,7 @@ figure.effect-julia:hover p {
         width: 100%;
         justify-content: center;
         flex-wrap: nowrap;
-        gap: 4px;
+        gap: 10px;
     }
     
     .nav-item {
@@ -785,10 +779,10 @@ figure.effect-julia:hover p {
     }
     
     .nav-link {
-        font-size: 0.7rem;
-        padding: 3px 5px;
+        font-size: 0.8rem;
+        padding: 4px 8px;
         white-space: nowrap;
-        letter-spacing: 0.3px;
+        letter-spacing: 0.5px;
     }
 
     .home-grid {
@@ -803,15 +797,13 @@ figure.effect-julia:hover p {
     .video-container {
         width: 100vw;
         height: 100vh;
-        background: #000000;
+        background: #ffffff;
     }
     
     .video-container video {
-        min-width: 100%;
-        min-height: 100%;
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
     }
 
     .gallery-grid {
@@ -825,21 +817,24 @@ figure.effect-julia:hover p {
     }
 
     .visual-modal-content {
-        max-width: 95%;
-        padding: 0 10px;
+        max-width: 92%;
+        max-height: 90vh;
+        padding: 50px 15px 15px 15px;
     }
 
     .visual-modal-content img {
-        max-height: 60vh;
+        max-height: 50vh;
+        margin-bottom: 15px;
     }
 
     .visual-modal-close {
-        top: -35px;
+        top: 10px;
+        right: 10px;
         font-size: 35px;
     }
 
     .visual-modal-info h3 {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
     }
 
     .visual-modal-info p {
@@ -904,13 +899,13 @@ figure.effect-julia:hover p {
     .btn { font-size: 1.1rem; padding: 10px 20px; }
     
     .navbar {
-        padding: 2px 6px;
+        padding: 4px 6px;
     }
     
     .nav-container {
         max-width: 100%;
         flex-direction: column;
-        gap: 2px;
+        gap: 3px;
     }
     
     .navbar-brand {
@@ -921,7 +916,7 @@ figure.effect-julia:hover p {
     }
     
     .navbar-brand img {
-        height: 40px;
+        height: 60px;
         margin: 0 auto;
         padding: 0;
     }
@@ -930,14 +925,14 @@ figure.effect-julia:hover p {
         width: 100%;
         justify-content: center;
         flex-wrap: nowrap;
-        gap: 3px;
+        gap: 8px;
     }
     
     .nav-link {
-        font-size: 0.6rem;
-        padding: 2px 3px;
+        font-size: 0.7rem;
+        padding: 3px 6px;
         white-space: nowrap;
-        letter-spacing: 0.2px;
+        letter-spacing: 0.3px;
     }
     
     .nav-item {
@@ -968,15 +963,13 @@ figure.effect-julia:hover p {
     .video-container {
         width: 100vw;
         height: 100vh;
-        background: #000000;
+        background: #ffffff;
     }
     
     .video-container video {
-        min-width: 100%;
-        min-height: 100%;
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
     }
 
     .gallery-grid {
@@ -989,17 +982,25 @@ figure.effect-julia:hover p {
         height: 250px;
     }
 
+    .visual-modal-content {
+        max-width: 95%;
+        max-height: 92vh;
+        padding: 45px 10px 10px 10px;
+    }
+
     .visual-modal-content img {
-        max-height: 55vh;
+        max-height: 45vh;
+        margin-bottom: 12px;
     }
 
     .visual-modal-close {
-        top: -30px;
-        font-size: 30px;
+        top: 8px;
+        right: 8px;
+        font-size: 32px;
     }
 
     .visual-modal-info h3 {
-        font-size: 1.2rem;
+        font-size: 1.15rem;
     }
 
     .visual-modal-info p {
@@ -1012,6 +1013,11 @@ figure.effect-julia:hover p {
         margin-top: 10px;
         text-align: center;
         font-size: 1rem;
+    }
+
+    .participation-images {
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
 }
 

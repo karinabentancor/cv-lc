@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
+    emailjs.init('h8YMRmYaX6_k4AK0U');
+    
     const pages = document.querySelectorAll('.page');
     const navLinks = document.querySelectorAll('.nav-link');
     const navItems = document.querySelectorAll('.nav-item');
@@ -115,37 +117,34 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     if (contactForm) {
-        contactForm.addEventListener('submit', async function(e) {
+        contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const formData = new FormData(this);
             const submitButton = this.querySelector('button[type="submit"]');
             const originalText = submitButton.textContent;
             
             submitButton.textContent = 'ENVIANDO...';
             submitButton.disabled = true;
             
-            try {
-                const response = await fetch('https://formspree.io/f/xvzoavjj', {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-                
-                if (response.ok) {
+            const templateParams = {
+                name: this.querySelector('input[name="name"]').value,
+                email: this.querySelector('input[name="email"]').value,
+                message: this.querySelector('textarea[name="message"]').value
+            };
+            
+            emailjs.send('service_b1w9veh', 'template_q1k2rxf', templateParams)
+                .then(() => {
                     alert('¡Mensaje enviado correctamente! Te responderé pronto.');
-                    this.reset();
-                } else {
+                    contactForm.reset();
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
                     alert('Hubo un error al enviar el mensaje. Por favor intenta nuevamente.');
-                }
-            } catch (error) {
-                alert('Error de conexión. Por favor verifica tu internet e intenta nuevamente.');
-            } finally {
-                submitButton.textContent = originalText;
-                submitButton.disabled = false;
-            }
+                })
+                .finally(() => {
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
+                });
         });
     }
 

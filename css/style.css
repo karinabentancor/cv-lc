@@ -819,22 +819,36 @@ figure.effect-julia:hover p {
         letter-spacing: 0.5px;
     }
 
-    .contact-container {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-        max-width: 500px;
+    /* CONTACTO en móviles - MUY compacto */
+    .contact-section {
+        padding: 1rem;
     }
 
-    .contact-form-container {
-        justify-content: center;
+    .contact-container {
+        gap: 2rem;
+        max-width: 90%;
+        padding-bottom: 110px;
+    }
+
+    .contact-form .form-control {
+        font-size: 1rem;
+        padding: 10px;
+        margin-bottom: 1rem;
+    }
+
+    .btn {
+        font-size: 1rem;
+        padding: 10px 18px;
     }
 
     .contact-info {
         text-align: center;
+        font-size: 0.9rem;
     }
 
     .contact-item {
         text-align: center;
+        margin-bottom: 0.5rem;
     }
 
     .tm-link-white {
@@ -994,6 +1008,32 @@ figure.effect-julia:hover p {
     .nav-item {
         margin: 0;
         flex-shrink: 0;
+    }
+
+    /* CONTACTO super compacto en móviles pequeños */
+    .contact-section {
+        padding: 0.5rem;
+    }
+
+    .contact-container {
+        gap: 1.5rem;
+        padding-bottom: 100px;
+        max-width: 95%;
+    }
+
+    .contact-form .form-control {
+        font-size: 0.95rem;
+        padding: 8px;
+        margin-bottom: 0.8rem;
+    }
+
+    .btn {
+        font-size: 0.95rem;
+        padding: 8px 16px;
+    }
+
+    .contact-info {
+        font-size: 0.85rem;
     }
 
     .content-section {

@@ -455,6 +455,14 @@ figure.effect-julia:hover p {
     overflow: hidden;
 }
 
+#page-5 {
+    overflow: hidden;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    padding-bottom: 0;
+}
+
 .contact-container {
     display: flex;
     flex-direction: column;
@@ -464,7 +472,7 @@ figure.effect-julia:hover p {
     max-width: 500px;
     width: 90%;
     text-align: center;
-    padding-bottom: 150px;
+    padding-bottom: 130px;
 }
 
 .contact-form-container {

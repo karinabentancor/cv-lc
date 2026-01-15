@@ -341,8 +341,8 @@ figure.effect-julia:hover p {
 
 .visual-modal-content {
     position: relative;
-    max-width: 85%;
-    max-height: 85vh;
+    max-width: 90%;
+    max-height: 90vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -357,7 +357,7 @@ figure.effect-julia:hover p {
 
 .visual-modal-content img {
     max-width: 100%;
-    max-height: 55vh;
+    max-height: 65vh;
     object-fit: contain;
     border-radius: 8px;
     margin-bottom: 20px;
@@ -398,15 +398,15 @@ figure.effect-julia:hover p {
 }
 
 .visual-modal-close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+    position: fixed;
+    top: 50px;
+    right: 50px;
     color: white;
     font-size: 40px;
     font-weight: 300;
     cursor: pointer;
     transition: color 0.3s ease;
-    z-index: 10;
+    z-index: 100;
 }
 
 .visual-modal-close:hover {
@@ -571,7 +571,7 @@ figure.effect-julia:hover p {
 
 .poem-index a {
     color: #1c1c1e;
-    font-weight: 500;
+    font-weight: 700;
     transition: all 0.3s ease;
     padding: 0.5rem 1rem;
     display: inline-block;
@@ -642,7 +642,7 @@ figure.effect-julia:hover p {
     min-height: 250px;
     overflow: hidden;
     border-radius: 8px;
-    background: #f5f5f5;
+    background: #ffffff;  
     display: flex;
     align-items: center;
     justify-content: center;
@@ -905,8 +905,8 @@ figure.effect-julia:hover p {
     }
 
     .visual-modal-close {
-        top: 10px;
-        right: 10px;
+        top: 30px;
+        right: 30px;
         font-size: 35px;
     }
 
@@ -1101,8 +1101,8 @@ figure.effect-julia:hover p {
     }
 
     .visual-modal-close {
-        top: 8px;
-        right: 8px;
+        top: 20px;
+        right: 20px;
         font-size: 32px;
     }
 

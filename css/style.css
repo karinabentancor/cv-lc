@@ -51,7 +51,6 @@ h3 {
     min-height: 100vh;
 }
 
-/* NAVBAR - Fuente limpia y clara */
 .navbar {
     position: fixed;
     bottom: 0;
@@ -102,7 +101,6 @@ h3 {
     margin: 0;
 }
 
-/* Fuente clara y limpia - Space Grotesk (más de diseño) */
 .nav-link {
     font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-size: 1.05rem;
@@ -158,7 +156,6 @@ h3 {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* VIDEO - Sin scroll, fijo y entero en todos los tamaños */
 .home-section {
     position: fixed;
     width: 100vw;
@@ -437,7 +434,6 @@ figure.effect-julia:hover p {
     box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
 }
 
-/* CONTACT - Fijo sin scroll, centrado en TODAS las pantallas */
 .contact-section {
     position: fixed;
     top: 0;
@@ -640,8 +636,7 @@ figure.effect-julia:hover p {
 .participation-image-wrapper {
     position: relative;
     width: 100%;
-    height: auto;
-    min-height: 250px;
+    height: 400px;
     overflow: hidden;
     border-radius: 8px;
     background: #ffffff;  
@@ -653,7 +648,7 @@ figure.effect-julia:hover p {
 .participation-image-wrapper img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
     filter: blur(8px) grayscale(100%);
     transition: filter 0.6s ease;
@@ -663,7 +658,6 @@ figure.effect-julia:hover p {
     filter: blur(0) grayscale(100%);
 }
 
-/* RESPONSIVE */
 @media (max-width: 992px) {
     .nav-container {
         justify-content: space-between;
@@ -731,7 +725,7 @@ figure.effect-julia:hover p {
     }
     
     .participation-image-wrapper {
-        min-height: 250px;
+        height: 300px;
     }
 }
 
@@ -857,7 +851,7 @@ figure.effect-julia:hover p {
     }
     
     .participation-image-wrapper {
-        min-height: 200px;
+        height: 350px;
     }
 
     .content-section {
@@ -975,11 +969,10 @@ figure.effect-julia:hover p {
     }
     
     .participation-image-wrapper {
-        min-height: 180px;
+        height: 300px;
     }
 }
 
-/* PANTALLAS GRANDES */
 @media (min-width: 1200px) {
     .navbar {
         padding: 8px 20px 4px 20px;

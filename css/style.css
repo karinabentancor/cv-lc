@@ -241,11 +241,12 @@ h3 {
 }
 
 .tm-bg-dark {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.95);
     margin: 50px 0;
     padding: 3em;
     border-radius: 15px;
     backdrop-filter: blur(15px);
+    color: #1c1c1e;
 }
 
 .gallery-section {
@@ -581,17 +582,25 @@ figure.effect-julia:hover p {
 .publication {
     scroll-margin-top: 100px;
     margin-bottom: 8rem;
+    color: #1c1c1e;
 }
 
 .publication h3 {
     font-size: 2.2rem;
     font-weight: 700;
     margin-bottom: 1rem;
+    color: #1c1c1e;
+}
+
+.publication p {
+    color: #666;
+    margin-bottom: 1.5rem;
 }
 
 .poem-text {
     overflow-wrap: break-word;
     word-wrap: break-word;
+    color: #1c1c1e;
 }
 
 .poem-text pre {
@@ -599,6 +608,13 @@ figure.effect-julia:hover p {
     word-wrap: break-word;
     overflow-wrap: break-word;
     max-width: 100%;
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #1c1c1e;
+    background: transparent;
+    margin: 0;
+    padding: 0;
 }
 
 .participation-item {

@@ -582,14 +582,14 @@ figure.effect-julia:hover p {
 .publication {
     scroll-margin-top: 100px;
     margin-bottom: 8rem;
-    color: #1c1c1e;
+    color: #000000;
 }
 
 .publication h3 {
     font-size: 2.2rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    color: #1c1c1e;
+    color: #000000;
 }
 
 .publication p {
@@ -600,7 +600,7 @@ figure.effect-julia:hover p {
 .poem-text {
     overflow-wrap: break-word;
     word-wrap: break-word;
-    color: #1c1c1e;
+    color: #000000;
 }
 
 .poem-text pre {
@@ -609,9 +609,10 @@ figure.effect-julia:hover p {
     overflow-wrap: break-word;
     max-width: 100%;
     font-family: 'Courier New', monospace;
-    font-size: 1rem;
+    font-size: 1.1rem;
+    font-weight: 500;
     line-height: 1.8;
-    color: #1c1c1e;
+    color: #000000;
     background: transparent;
     margin: 0;
     padding: 0;

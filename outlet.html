@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Outlet | Luna Curto - Cuadros Originales</title>
+    <meta name="description" content="Outlet de Luna Curto. Cuadros originales disponibles para la venta. Obras de la artista visual Luna Curto, Montevideo, Uruguay.">
+    <meta name="keywords" content="Luna Curto cuadros venta, arte original uruguay venta, comprar cuadros montevideo, outlet arte contemporáneo, obra original luna curto">
+    <meta name="author" content="Luna Curto">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://lunacurto.uy/outlet.html">
+
+    <meta property="og:title" content="Outlet - Luna Curto">
+    <meta property="og:description" content="Cuadros originales de Luna Curto disponibles para la venta.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lunacurto.uy/outlet.html">
+    <meta property="og:image" content="https://lunacurto.uy/media/luna%20curto%202%20svg.svg">
+    <meta property="og:locale" content="es_UY">
+    <meta property="og:site_name" content="Luna Curto">
+
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+
+        /* ══════════════════════════════
+           COMPOSICIÓN MARCO + OBRA
+           Marco PNG (transparente) encima.
+           Obra posicionada en el rectángulo
+           blanco del passepartout.
+
+           Coords sobre PNG 1200×1200:
+             top   : 33.33%  (400px)
+             left  : 38.50%  (462px)
+             width : 23.58%  (283px)
+             height: 33.08%  (397px)
+        ══════════════════════════════ */
+        .cuadro-wrap {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+        }
+
+        .cuadro-obra {
+            position: absolute;
+            top:    33.33%;
+            left:   38.50%;
+            width:  23.58%;
+            height: 33.08%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .cuadro-marco {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* ══════════════════════════════
+           GRID DE OUTLET
+        ══════════════════════════════ */
+        .outlet-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: calc(100vh - 80px);
+            padding: 4rem 2rem;
+        }
+
+        .outlet-header { margin-bottom: 3rem; }
+
+        .outlet-header h1 {
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            opacity: 0.5;
+            margin: 0;
+        }
+
+        .outlet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1px;
+            border: 1px solid currentColor;
+            opacity: 0.85;
+            max-width: 780px;
+        }
+
+        .outlet-item {
+            padding: 2rem 2rem 2.5rem;
+            border-right: 1px solid currentColor;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .outlet-item:last-child { border-right: none; }
+        .outlet-item:hover { opacity: 1; }
+
+        .outlet-item-number {
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            opacity: 0.4;
+        }
+
+        .outlet-item-name {
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            margin: 0;
+        }
+
+        .outlet-item-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .outlet-item-medidas {
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            opacity: 0.5;
+        }
+
+        .outlet-item-price {
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+        }
+
+        .outlet-item-cta { margin-top: auto; }
+
+        .outlet-item-cta a {
+            display: inline-block;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-bottom: 1px solid currentColor;
+            padding-bottom: 2px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .outlet-item-cta a:hover { opacity: 1; }
+
+        /* ══════════════════════════════
+           PANEL DE DETALLE
+        ══════════════════════════════ */
+        .detail-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: 900;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+        }
+
+        .detail-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .detail-panel {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: min(560px, 100vw);
+            height: 100vh;
+            background: var(--bg-color, #faf9f7);
+            color: var(--text-color, #1a1a1a);
+            z-index: 950;
+            display: flex;
+            flex-direction: column;
+            padding: 3rem 2.5rem 2.5rem;
+            gap: 1.8rem;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+            box-sizing: border-box;
+            border-left: 1px solid currentColor;
+        }
+
+        .detail-panel.open { transform: translateX(0); }
+
+        .detail-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            opacity: 0.5;
+            transition: opacity 0.2s;
+            color: inherit;
+            padding: 0;
+        }
+
+        .detail-close:hover { opacity: 1; }
+
+        .detail-title {
+            font-size: 0.65rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            opacity: 0.4;
+            margin: 0;
+        }
+
+        /* Composición grande en el panel */
+        .detail-cuadro-wrap {
+            position: relative;
+            width: 100%;
+            max-width: 360px;
+            aspect-ratio: 1 / 1;
+            margin: 0 auto;
+        }
+
+        .detail-cuadro-obra {
+            position: absolute;
+            top:    33.33%;
+            left:   38.50%;
+            width:  23.58%;
+            height: 33.08%;
+            object-fit: cover;
+            z-index: 1;
+            transition: opacity 0.25s;
+        }
+
+        .detail-cuadro-marco {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* Selector de marco */
+        .detail-marco-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            opacity: 0.45;
+            margin-bottom: 0.75rem;
+        }
+
+        .detail-marco-options {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .marco-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.15s;
+            flex-shrink: 0;
+        }
+
+        .marco-btn.negro  { background: #111; border-color: #111; }
+        .marco-btn.blanco { background: #f0f0f0; border-color: #bbb; }
+
+        .marco-btn.active,
+        .marco-btn:hover {
+            transform: scale(1.15);
+            box-shadow: 0 0 0 2px currentColor;
+        }
+
+        .marco-label-text {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            opacity: 0.5;
+        }
+
+        /* Miniaturas — también con composición marco+obra */
+        .detail-thumbs-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            opacity: 0.45;
+            margin-bottom: 0.75rem;
+        }
+
+        .detail-thumbs {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+        }
+
+        .thumb-btn {
+            position: relative;
+            aspect-ratio: 1 / 1;
+            border: none;
+            cursor: pointer;
+            overflow: hidden;
+            opacity: 0.5;
+            transition: opacity 0.2s;
+            background: none;
+            padding: 0;
+        }
+
+        .thumb-btn .t-obra {
+            position: absolute;
+            top:    33.33%;
+            left:   38.50%;
+            width:  23.58%;
+            height: 33.08%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .thumb-btn .t-marco {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .thumb-btn.active,
+        .thumb-btn:hover { opacity: 1; }
+
+        .thumb-btn.active {
+            outline: 1.5px solid currentColor;
+            outline-offset: 2px;
+        }
+
+        /* Info y CTA */
+        .detail-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .detail-info-name {
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            margin: 0;
+        }
+
+        .detail-info-medidas {
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            opacity: 0.5;
+        }
+
+        .detail-info-price { font-size: 1rem; letter-spacing: 0.05em; }
+
+        .detail-consultar {
+            display: inline-block;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-bottom: 1px solid currentColor;
+            padding-bottom: 2px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+            color: inherit;
+            align-self: flex-start;
+            margin-top: 0.5rem;
+        }
+
+        .detail-consultar:hover { opacity: 1; }
+
+        @media (max-width: 560px) {
+            .detail-panel { padding: 3rem 1.5rem 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <nav class="navbar" id="tm-nav">
+            <div class="nav-container">
+                <a class="navbar-brand" href="index.html" aria-label="Luna Curto - Inicio">
+                    <img src="media/luna%20curto%202%20svg.svg" alt="Luna Curto - Poeta y Artista Visual">
+                </a>
+                <ul class="navbar-nav" id="nav-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="visuales.html">visuales</a>
+                        <div class="circle"></div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="poesia.html">poesía</a>
+                        <div class="circle"></div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="participaciones.html">participaciones</a>
+                        <div class="circle"></div>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="outlet.html">outlet</a>
+                        <div class="circle"></div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacto.html">contacto</a>
+                        <div class="circle"></div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <section class="page active" id="page-outlet">
+                <div class="outlet-section">
+
+                    <div class="outlet-grid">
+
+                        <!-- ── 01 territorio ── -->
+                        <article
+                            class="outlet-item"
+                            itemscope itemtype="https://schema.org/Product"
+                            onclick="abrirDetalle('territorio', '$3.500', '25 × 35 cm', [
+                                'media/territorio3.jpg',
+                                'media/territorio4.jpg'
+                            ])"
+                        >
+                            <div class="cuadro-wrap">
+                                <img class="cuadro-obra" src="media/territorio3.jpg"
+                                     alt="territorio — cuadro original de Luna Curto" loading="lazy" itemprop="image">
+                                <img class="cuadro-marco" src="media/marco_negro.png" alt="" aria-hidden="true">
+                            </div>
+                            <h2 class="outlet-item-name" itemprop="name">territorio</h2>
+                            <div class="outlet-item-details">
+                                <span class="outlet-item-medidas">25 × 35 cm</span>
+                                <span class="outlet-item-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                    <meta itemprop="priceCurrency" content="UYU">
+                                    <span itemprop="price" content="3500">$3.500</span>
+                                </span>
+                            </div>
+                        </article>
+
+                        <!-- ── 02 vos ── -->
+                        <article
+                            class="outlet-item"
+                            itemscope itemtype="https://schema.org/Product"
+                            onclick="abrirDetalle('vos', '$3.500', '25 × 35 cm', [
+                                'media/vos1.jpg',
+                                'media/vos2.jpg'
+                            ])"
+                        >
+                            <div class="cuadro-wrap">
+                                <img class="cuadro-obra" src="media/vos1.jpg"
+                                     alt="vos — cuadro original de Luna Curto" loading="lazy" itemprop="image">
+                                <img class="cuadro-marco" src="media/marco_negro.png" alt="" aria-hidden="true">
+                            </div>
+                            <h2 class="outlet-item-name" itemprop="name">vos</h2>
+                            <div class="outlet-item-details">
+                                <span class="outlet-item-medidas">25 × 35 cm</span>
+                                <span class="outlet-item-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                    <meta itemprop="priceCurrency" content="UYU">
+                                    <span itemprop="price" content="3500">$3.500</span>
+                                </span>
+                            </div>
+                        </article>
+
+                        <!-- ── 03 nn ── -->
+                        <article
+                            class="outlet-item"
+                            itemscope itemtype="https://schema.org/Product"
+                            onclick="abrirDetalle('nn', '$3.500', '25 × 35 cm', [
+                                'media/nn1.jpg',
+                                'media/nn4.jpg'
+                            ])"
+                        >
+                            <div class="cuadro-wrap">
+                                <img class="cuadro-obra" src="media/nn1.jpg"
+                                     alt="nn — cuadro original de Luna Curto" loading="lazy" itemprop="image">
+                                <img class="cuadro-marco" src="media/marco_negro.png" alt="" aria-hidden="true">
+                            </div>
+                            <h2 class="outlet-item-name" itemprop="name">nn</h2>
+                            <div class="outlet-item-details">
+                                <span class="outlet-item-medidas">25 × 35 cm</span>
+                                <span class="outlet-item-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                    <meta itemprop="priceCurrency" content="UYU">
+                                    <span itemprop="price" content="3500">$3.500</span>
+                                </span>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- ── Overlay ── -->
+    <div class="detail-overlay" id="detail-overlay" onclick="cerrarDetalle()"></div>
+
+    <!-- ── Panel de detalle ── -->
+    <div class="detail-panel" id="detail-panel" role="dialog" aria-modal="true" aria-label="Detalle del cuadro">
+        <button class="detail-close" onclick="cerrarDetalle()">cerrar ✕</button>
+
+        <p class="detail-title" id="detail-title">detalle</p>
+
+        <!-- Composición grande -->
+        <div class="detail-cuadro-wrap">
+            <img class="detail-cuadro-obra"  id="detail-cuadro-obra"  src="" alt="">
+            <img class="detail-cuadro-marco" id="detail-cuadro-marco" src="media/marco_blanco.png" alt="" aria-hidden="true">
+        </div>
+
+        <!-- Selector de marco -->
+        <div>
+            <p class="detail-marco-label">marco</p>
+            <div class="detail-marco-options">
+                <button class="marco-btn negro"        id="btn-negro"  onclick="setMarco('negro')"  aria-label="Marco negro"></button>
+                <button class="marco-btn blanco active" id="btn-blanco" onclick="setMarco('blanco')" aria-label="Marco blanco"></button>
+                <span class="marco-label-text" id="marco-label-text">negro</span>
+            </div>
+        </div>
+
+        <!-- Miniaturas con composición -->
+        <div>
+            <p class="detail-thumbs-label">vistas</p>
+            <div class="detail-thumbs" id="detail-thumbs"></div>
+        </div>
+
+        <!-- Info -->
+        <div class="detail-info">
+            <h2 class="detail-info-name"     id="detail-info-name"></h2>
+            <span class="detail-info-medidas" id="detail-info-medidas"></span>
+            <span class="detail-info-price"   id="detail-info-price"></span>
+        </div>
+    </div>
+
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        const MARCOS = {
+            negro:  'media/marco_negro.png',
+            blanco: 'media/marco_blanco.png'
+        };
+
+        let marcoActual = 'negro';
+
+        function abrirDetalle(nombre, precio, medidas, imagenes) {
+            /* Obra principal */
+            const obra = document.getElementById('detail-cuadro-obra');
+            obra.src = imagenes[0];
+            obra.alt = nombre + ' — Luna Curto';
+
+            /* Datos */
+            document.getElementById('detail-title').textContent        = nombre;
+            document.getElementById('detail-info-name').textContent    = nombre;
+            document.getElementById('detail-info-medidas').textContent = medidas;
+            document.getElementById('detail-info-price').textContent   = precio;
+
+            /* Miniaturas */
+            const thumbs = document.getElementById('detail-thumbs');
+            thumbs.innerHTML = '';
+            imagenes.forEach((src, i) => {
+                const btn = document.createElement('button');
+                btn.className = 'thumb-btn' + (i === 0 ? ' active' : '');
+                btn.setAttribute('aria-label', 'Vista ' + (i + 1));
+                btn.innerHTML = `
+                    <img class="t-obra"  src="${src}" alt="${nombre} vista ${i + 1}" loading="lazy">
+                    <img class="t-marco" src="${MARCOS[marcoActual]}" alt="" aria-hidden="true">
+                `;
+                btn.onclick = () => seleccionarObra(src, btn);
+                thumbs.appendChild(btn);
+            });
+
+            /* Marco inicial */
+            setMarco('blanco');
+
+            /* Abrir */
+            document.getElementById('detail-overlay').classList.add('open');
+            document.getElementById('detail-panel').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function cerrarDetalle() {
+            document.getElementById('detail-overlay').classList.remove('open');
+            document.getElementById('detail-panel').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        function seleccionarObra(src, btnActivo) {
+            document.getElementById('detail-cuadro-obra').src = src;
+            document.querySelectorAll('.thumb-btn').forEach(b => b.classList.remove('active'));
+            btnActivo.classList.add('active');
+        }
+
+        function setMarco(color) {
+            marcoActual = color;
+            const src = MARCOS[color];
+
+            /* Marco grande */
+            document.getElementById('detail-cuadro-marco').src = src;
+
+            /* Marcos en miniaturas */
+            document.querySelectorAll('.thumb-btn .t-marco').forEach(img => img.src = src);
+
+            /* Botones */
+            document.getElementById('btn-negro').classList.toggle('active',  color === 'negro');
+            document.getElementById('btn-blanco').classList.toggle('active', color === 'blanco');
+            document.getElementById('marco-label-text').textContent = color;
+        }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') cerrarDetalle();
+        });
+    </script>
+</body>
+</html>

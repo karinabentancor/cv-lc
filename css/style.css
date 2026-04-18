@@ -77,6 +77,7 @@ h3 {
 .navbar-brand {
     font-size: 0;
     line-height: 0;
+    flex-shrink: 0;
 }
 
 .navbar-brand img {
@@ -93,23 +94,25 @@ h3 {
     align-items: center;
     margin: 0;
     padding: 0;
-    gap: 30px;
+    gap: 20px;
+    flex-wrap: nowrap;
 }
 
 .nav-item {
     position: relative;
     margin: 0;
+    white-space: nowrap;
 }
 
 .nav-link {
     font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-size: 1.05rem;
-    padding: 12px 4px 16px 4px;
+    font-size: 0.95rem;
+    padding: 12px 2px 16px 2px;
     color: #1c1c1e;
     display: block;
     transition: all 0.3s ease;
     font-weight: 600;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
     text-transform: lowercase;
 }
 
@@ -675,6 +678,131 @@ figure.effect-julia:hover p {
     filter: blur(0) grayscale(100%);
 }
 
+/* ── OUTLET ─────────────────────────────────────────────────────────────── */
+.outlet-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100vh - 80px);
+    padding: 4rem 2rem;
+}
+
+.outlet-header {
+    margin-bottom: 3rem;
+}
+
+.outlet-header h1 {
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin: 0;
+}
+
+.outlet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px;
+    border: 1px solid currentColor;
+    opacity: 0.85;
+    max-width: 680px;
+}
+
+.outlet-item {
+    padding: 2rem 2rem 2.5rem;
+    border-right: 1px solid currentColor;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.outlet-item:last-child {
+    border-right: none;
+}
+
+.outlet-item-number {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.4;
+}
+
+.outlet-item-placeholder {
+    width: 100%;
+    aspect-ratio: 25 / 35;
+    border: 1px solid currentColor;
+    opacity: 0.15;
+}
+
+.outlet-item-name {
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    margin: 0;
+}
+
+.outlet-item-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.outlet-item-medidas {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    opacity: 0.5;
+}
+
+.outlet-item-price {
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+}
+
+.outlet-item-cta {
+    margin-top: auto;
+}
+
+.outlet-item-cta a {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.outlet-item-cta a:hover {
+    opacity: 1;
+}
+
+.outlet-sold {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.35;
+    text-decoration: line-through;
+}
+
+/* ── RESPONSIVE ─────────────────────────────────────────────────────────── */
+
+@media (max-width: 1100px) {
+    .navbar-nav {
+        gap: 14px;
+    }
+    .nav-link {
+        font-size: 0.88rem;
+        letter-spacing: 0;
+    }
+    .navbar-brand img {
+        height: 110px;
+    }
+}
+
 @media (max-width: 992px) {
     .nav-container {
         justify-content: space-between;
@@ -686,16 +814,16 @@ figure.effect-julia:hover p {
     }
     
     .navbar-brand img {
-        height: 100px;
+        height: 95px;
     }
     
     .navbar-nav {
-        gap: 20px;
+        gap: 12px;
     }
     
     .nav-link {
-        font-size: 1rem;
-        padding: 10px 4px 14px 4px;
+        font-size: 0.85rem;
+        padding: 10px 2px 14px 2px;
     }
 
     .contact-container {
@@ -756,7 +884,7 @@ figure.effect-julia:hover p {
     .nav-container {
         max-width: 100%;
         flex-direction: column;
-        gap: 8px;
+        gap: 6px;
     }
     
     .navbar-brand {
@@ -766,14 +894,15 @@ figure.effect-julia:hover p {
     }
     
     .navbar-brand img {
-        height: 85px;
+        height: 75px;
         margin: 0 auto;
     }
     
     .navbar-nav {
         width: 100%;
         justify-content: center;
-        gap: 15px;
+        gap: 10px;
+        flex-wrap: nowrap;
     }
     
     .nav-item {
@@ -781,8 +910,9 @@ figure.effect-julia:hover p {
     }
     
     .nav-link {
-        font-size: 0.95rem;
-        padding: 8px 8px 12px 8px;
+        font-size: 0.78rem;
+        padding: 8px 4px 12px 4px;
+        letter-spacing: 0;
     }
 
     .contact-section {
@@ -876,29 +1006,45 @@ figure.effect-julia:hover p {
     }
 }
 
+@media (max-width: 540px) {
+    .navbar-nav {
+        gap: 6px;
+    }
+    .nav-link {
+        font-size: 0.72rem;
+        padding: 6px 3px 10px 3px;
+    }
+    .navbar-brand img {
+        height: 65px;
+    }
+}
+
 @media (max-width: 480px) {
     body { font-size: 16px; }
     
     .navbar {
-        padding: 8px 8px 4px 8px;
+        padding: 8px 6px 4px 6px;
     }
     
     .nav-container {
         flex-direction: column;
-        gap: 6px;
+        gap: 4px;
     }
     
     .navbar-brand img {
-        height: 70px;
+        height: 55px;
     }
     
     .navbar-nav {
-        gap: 12px;
+        gap: 4px;
+        width: 100%;
+        justify-content: space-between;
     }
     
     .nav-link {
-        font-size: 0.85rem;
-        padding: 6px 6px 10px 6px;
+        font-size: 0.68rem;
+        padding: 5px 2px 8px 2px;
+        letter-spacing: 0;
     }
 
     .contact-section {
@@ -996,6 +1142,7 @@ figure.effect-julia:hover p {
     }
 
     .nav-link {
+        font-size: 1rem;
         padding: 8px 4px 10px 4px;
     }
 

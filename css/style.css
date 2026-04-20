@@ -659,7 +659,7 @@ figure.effect-julia:hover p {
     height: 500px;
     overflow: hidden;
     border-radius: 8px;
-    background: #ffffff;  
+    background: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -679,12 +679,19 @@ figure.effect-julia:hover p {
 }
 
 /* ── OUTLET ─────────────────────────────────────────────────────────────── */
+
+#page-outlet {
+    display: block;
+    min-height: unset;
+    height: auto;
+    overflow-y: auto;
+    padding-bottom: 220px;
+    position: static;
+    animation: fadeInUp 0.6s ease;
+}
+
 .outlet-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: calc(100vh - 80px);
-    padding: 4rem 2rem;
+    padding: 4rem 2rem 2rem;
 }
 
 .outlet-header {
@@ -702,15 +709,15 @@ figure.effect-julia:hover p {
 
 .outlet-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1px;
     border: 1px solid currentColor;
     opacity: 0.85;
-    max-width: 680px;
+    max-width: 780px;
 }
 
 .outlet-item {
-    padding: 2rem 2rem 2.5rem;
+    padding: 2rem;
     border-right: 1px solid currentColor;
     display: flex;
     flex-direction: column;
@@ -719,20 +726,6 @@ figure.effect-julia:hover p {
 
 .outlet-item:last-child {
     border-right: none;
-}
-
-.outlet-item-number {
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    opacity: 0.4;
-}
-
-.outlet-item-placeholder {
-    width: 100%;
-    aspect-ratio: 25 / 35;
-    border: 1px solid currentColor;
-    opacity: 0.15;
 }
 
 .outlet-item-name {
@@ -760,24 +753,32 @@ figure.effect-julia:hover p {
     letter-spacing: 0.05em;
 }
 
-.outlet-item-cta {
+.outlet-item-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
     margin-top: auto;
 }
 
-.outlet-item-cta a {
-    display: inline-block;
-    font-size: 0.7rem;
+.btn-quiero {
+    display: block;
+    width: 100%;
+    padding: 0.6rem 1rem;
+    font-family: inherit;
+    font-size: 0.68rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    text-decoration: none;
-    border-bottom: 1px solid currentColor;
-    padding-bottom: 2px;
-    opacity: 0.7;
-    transition: opacity 0.2s;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #1a1a1a;
+    background: none;
+    color: #1a1a1a;
+    transition: background 0.2s, color 0.2s;
 }
 
-.outlet-item-cta a:hover {
-    opacity: 1;
+.btn-quiero:hover {
+    background: #1a1a1a;
+    color: #faf9f7;
 }
 
 .outlet-sold {
@@ -1004,6 +1005,10 @@ figure.effect-julia:hover p {
     .content-section {
         padding: 1.5rem 2rem;
     }
+
+    #page-outlet {
+        padding-bottom: 180px;
+    }
 }
 
 @media (max-width: 540px) {
@@ -1133,6 +1138,10 @@ figure.effect-julia:hover p {
     
     .participation-image-wrapper {
         height: 300px;
+    }
+
+    #page-outlet {
+        padding-bottom: 160px;
     }
 }
 

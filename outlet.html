@@ -352,8 +352,7 @@
         flex-direction: column;
         justify-content: space-between;
         padding: 2rem 2.5rem 2rem 2rem;
-        overflow-y: auto;
-        overflow-x: hidden;
+        overflow: hidden;
         min-height: 0;
         gap: 0;
     }
@@ -420,16 +419,35 @@
         font-weight: 500;
     }
 
-    /* ── BOTONES CTA DEL PANEL: más pequeños ────────────────────────────── */
-    .detail-cta-inline { display: flex; flex-direction: column; gap: 0.4rem; align-items: flex-end; }
+    /* ── BLOQUE INFERIOR DEL PANEL ─────────────────────────────────────── */
+    .detail-bottom-block {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 1.5rem;
+        border-top: 1px solid rgba(26,26,26,0.12);
+        padding-top: 1.5rem;
+    }
+
+    .detail-bottom-left {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+        flex: 1;
+        min-width: 0;
+    }
+
+    /* ── BOTONES CTA DEL PANEL ───────────────────────────────────────────── */
+    .detail-cta-inline { display: flex; flex-direction: column; gap: 0.5rem; align-items: flex-end; flex-shrink: 0; }
 
     .detail-cta-btn {
         display: block;
         width: auto;
-        min-width: 160px;
-        padding: 0.7rem 1.2rem;
+        min-width: 180px;
+        padding: 0.85rem 1.4rem;
         font-family: 'Courier New', monospace;
-        font-size: 0.72rem;
+        font-size: 0.8rem;
         letter-spacing: 0.15em;
         text-transform: uppercase;
         text-align: center;
@@ -799,30 +817,36 @@
             </div>
 
             <div class="detail-right">
+
+                <!-- BLOQUE SUPERIOR: nombre + precio -->
                 <div class="detail-info">
                     <h2 class="detail-info-name" id="detail-info-name"></h2>
                     <span class="detail-info-medidas" id="detail-info-medidas"></span>
                     <span class="detail-info-price" id="detail-info-price"></span>
                 </div>
 
-                <div>
-                    <span class="detail-marco-label">marco</span>
-                    <div class="detail-marco-options">
-                        <button class="marco-btn negro"  id="btn-negro"  onclick="setMarco('negro')"  aria-label="Marco negro"></button>
-                        <button class="marco-btn blanco active" id="btn-blanco" onclick="setMarco('blanco')" aria-label="Marco blanco"></button>
-                        <span class="marco-label-text" id="marco-label-text">blanco</span>
+                <!-- BLOQUE INFERIOR: marco + vistas + botones juntos -->
+                <div class="detail-bottom-block">
+                    <div class="detail-bottom-left">
+                        <div>
+                            <span class="detail-marco-label">marco</span>
+                            <div class="detail-marco-options">
+                                <button class="marco-btn negro"  id="btn-negro"  onclick="setMarco('negro')"  aria-label="Marco negro"></button>
+                                <button class="marco-btn blanco active" id="btn-blanco" onclick="setMarco('blanco')" aria-label="Marco blanco"></button>
+                                <span class="marco-label-text" id="marco-label-text">blanco</span>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="detail-thumbs-label">vistas</span>
+                            <div class="detail-thumbs" id="detail-thumbs"></div>
+                        </div>
+                    </div>
+                    <div class="detail-cta-inline">
+                        <button class="detail-cta-btn primario"   onclick="abrirOrden(1)">quiero este</button>
+                        <button class="detail-cta-btn secundario" onclick="abrirOrden(2)">quiero los dos</button>
                     </div>
                 </div>
 
-                <div class="detail-cta-inline">
-                    <button class="detail-cta-btn primario"   onclick="abrirOrden(1)">quiero este</button>
-                    <button class="detail-cta-btn secundario" onclick="abrirOrden(2)">quiero los dos</button>
-                </div>
-
-                <div>
-                    <span class="detail-thumbs-label">vistas</span>
-                    <div class="detail-thumbs" id="detail-thumbs"></div>
-                </div>
             </div>
         </div>
     </div>

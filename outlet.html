@@ -16,102 +16,43 @@
     <meta property="og:image" content="https://lunacurto.uy/media/luna%20curto%202%20svg.svg">
     <meta property="og:locale" content="es_UY">
     <meta property="og:site_name" content="Luna Curto">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <style>
 
-    /* ── RESET: anular el height:100% del CSS global ──────────────────── */
+    /* ── RESET / SCROLL ─────────────────────────────────────────────────── */
     html, body {
         height: auto !important;
         min-height: 100vh;
         overflow-x: hidden !important;
+        overflow-y: auto !important;
     }
 
-    /* En desktop: todo entra sin scroll */
-    @media (min-width: 681px) {
-        html, body {
-            overflow-y: hidden !important;
-            height: 100vh !important;
-        }
-        .page-container {
-            height: 100vh !important;
-            overflow: hidden !important;
-            display: flex !important;
-            flex-direction: column !important;
-        }
-        .main-content {
-            flex: 1 !important;
-            overflow: hidden !important;
-            height: 0 !important; /* fuerza que no crezca más allá del flex */
-        }
-        .outlet-page {
-            height: 100% !important;
-            overflow: hidden !important;
-            display: flex !important;
-            flex-direction: column !important;
-            padding: 1.5rem 2rem 0 !important;
-            box-sizing: border-box !important;
-        }
-        .outlet-header {
-            flex-shrink: 0;
-            margin-bottom: 1rem !important;
-        }
-        .outlet-grid {
-            flex: 1;
-            min-height: 0;
-            display: grid !important;
-            /* La navbar tiene ~130px, el header ~40px, padding ~40px → sobran ~90px */
-            max-height: calc(100vh - 220px) !important;
-        }
-        .outlet-item {
-            overflow: hidden;
-            padding: 1.2rem !important;
-            gap: 0.6rem !important;
-        }
-        .cuadro-wrap {
-            /* El cuadro ocupa lo que pueda sin desbordar */
-            flex: 1;
-            min-height: 0;
-            max-height: calc(100vh - 340px) !important;
-        }
-        .outlet-item-name  { font-size: 0.9rem !important; }
-        .outlet-item-medidas { font-size: 0.7rem !important; }
-        .outlet-item-price   { font-size: 0.85rem !important; }
+    .page-container {
+        height: auto !important;
+        min-height: 100vh;
+        overflow: visible !important;
     }
 
-    /* En mobile: scroll normal */
-    @media (max-width: 680px) {
-        html, body {
-            overflow-y: auto !important;
-        }
-        .page-container {
-            height: auto !important;
-            min-height: 100vh;
-            display: flex !important;
-            flex-direction: column !important;
-            overflow: visible !important;
-        }
-        .main-content {
-            flex: 1 !important;
-            overflow: visible !important;
-            height: auto !important;
-        }
-        .outlet-page {
-            padding: 2rem 1rem 200px !important;
-        }
+    .main-content {
+        height: auto !important;
+        overflow: visible !important;
+        max-width: 100% !important;
+        width: 100% !important;
     }
 
     /* ── SECCIÓN OUTLET ─────────────────────────────────────────────────── */
-
     .outlet-page {
         display: block;
         width: 100%;
-        padding: 3rem 2rem 220px;
+        max-width: 100%;
+        padding: 3rem 0 220px;
         box-sizing: border-box;
     }
 
     .outlet-header {
         margin-bottom: 2.5rem;
+        padding: 0 2rem;
     }
 
     .outlet-header h1 {
@@ -124,31 +65,36 @@
         margin: 0;
     }
 
-    /* ── GRID DE CUADROS ────────────────────────────────────────────────── */
-
+    /* ── GRID ───────────────────────────────────────────────────────────── */
     .outlet-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 1px;
-        border: 1px solid #1a1a1a;
-        max-width: 780px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        border-top: 1px solid #1a1a1a;
+        border-bottom: 1px solid #1a1a1a;
+        width: 100%;
+        max-width: 100%;
         opacity: 0.9;
     }
 
     .outlet-item {
-        padding: 2rem;
+        padding: 2.5rem 2rem;
         border-right: 1px solid #1a1a1a;
+        border-bottom: 1px solid #1a1a1a;
         display: flex;
         flex-direction: column;
         gap: 1.2rem;
+        min-width: 0;
     }
 
-    .outlet-item:last-child {
-        border-right: none;
-    }
+    /* quitar border-bottom de los últimos 3 */
+    .outlet-item:nth-last-child(-n+3) { border-bottom: none; }
+
+    /* primer de cada fila: borde izquierdo */
+    .outlet-item:nth-child(3n+1) { border-left: 1px solid #1a1a1a; }
+    .outlet-item:last-child { border-right: 1px solid #1a1a1a; }
 
     /* ── CUADRO EN GRID ─────────────────────────────────────────────────── */
-
     .cuadro-wrap {
         position: relative;
         width: 100%;
@@ -173,10 +119,14 @@
     }
 
     .outlet-item-name {
-        font-family: 'Space Grotesk', sans-serif;
-        font-size: 1.1rem;
-        font-weight: 600;
-        letter-spacing: 0.05em;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
         margin: 0;
     }
 
@@ -237,7 +187,6 @@
     }
 
     /* ── OVERLAY ────────────────────────────────────────────────────────── */
-
     .detail-overlay {
         position: fixed;
         inset: 0;
@@ -254,7 +203,6 @@
     }
 
     /* ── PANEL DETALLE ──────────────────────────────────────────────────── */
-
     .detail-panel {
         position: fixed;
         top: 0; left: 0; right: 0; bottom: 0;
@@ -267,7 +215,6 @@
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         pointer-events: none;
         overflow: hidden;
-        /* Dejar espacio para la navbar fija abajo */
         padding-bottom: 130px;
     }
 
@@ -303,9 +250,7 @@
 
     .detail-close:hover { opacity: 1; }
 
-    .detail-title {
-        display: none;
-    }
+    .detail-title { display: none; }
 
     .detail-body {
         display: grid;
@@ -319,14 +264,19 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 1.25rem;
+        /* margen interior para que el marco no toque el borde */
+        padding: 2rem 1.5rem;
         border-right: 1px solid #1a1a1a;
         overflow: hidden;
+        box-sizing: border-box;
     }
 
+    /* Imagen con margen: usa height para que entre completa verticalmente */
     .detail-cuadro-wrap {
         position: relative;
-        width: min(52vh, 80%);
+        /* altura máxima = panel - header - padding navbar - padding interno */
+        height: min(calc(100vh - 230px), 72vh);
+        width: auto;
         aspect-ratio: 665 / 829;
         flex-shrink: 0;
     }
@@ -362,11 +312,13 @@
     .detail-info { display: flex; flex-direction: column; gap: 0.25rem; }
 
     .detail-info-name {
-        font-family: 'Space Grotesk', sans-serif;
-        font-size: 1.4rem;
-        font-weight: 600;
-        letter-spacing: 0.04em;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 900;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
         margin: 0;
+        white-space: nowrap;
     }
 
     .detail-info-medidas {
@@ -438,7 +390,6 @@
         min-width: 0;
     }
 
-    /* ── BOTONES CTA DEL PANEL ───────────────────────────────────────────── */
     .detail-cta-inline { display: flex; flex-direction: column; gap: 0.5rem; align-items: flex-end; flex-shrink: 0; }
 
     .detail-cta-btn {
@@ -503,7 +454,6 @@
     .thumb-btn.active { outline: 1.5px solid #1a1a1a; outline-offset: 2px; }
 
     /* ── MODAL DE ORDEN ─────────────────────────────────────────────────── */
-
     .order-overlay {
         position: fixed;
         inset: 0;
@@ -536,21 +486,13 @@
         transform: translate(-50%, -50%);
     }
 
+    /* Header del modal sin título "confirmar pedido" */
     .order-modal-header {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-end;
         padding: 0.9rem 1.4rem;
         border-bottom: 1px solid #1a1a1a;
-    }
-
-    .order-modal-header h3 {
-        font-size: 0.62rem;
-        letter-spacing: 0.25em;
-        text-transform: uppercase;
-        font-weight: 600;
-        margin: 0;
-        opacity: 0.6;
     }
 
     .order-modal-close {
@@ -580,13 +522,27 @@
     .order-summary {
         display: flex;
         flex-direction: column;
-        gap: 0.2rem;
+        gap: 0.3rem;
         padding-bottom: 0.9rem;
         border-bottom: 1px solid rgba(26,26,26,0.15);
     }
 
-    .order-summary-obra   { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 700; letter-spacing: 0.04em; }
-    .order-summary-detalle { font-size: 0.7rem; letter-spacing: 0.1em; opacity: 0.6; font-weight: 500; }
+    /* Tipografía más gruesa y visible en el resumen */
+    .order-summary-obra {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 1.4rem;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    .order-summary-detalle {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 0.82rem;
+        letter-spacing: 0.08em;
+        font-weight: 600;
+        opacity: 0.75;
+    }
 
     .order-field { display: flex; flex-direction: column; gap: 0.35rem; }
 
@@ -647,11 +603,37 @@
     .order-feedback.err { color: #a02020; }
 
     /* ── RESPONSIVE MOBILE ──────────────────────────────────────────────── */
-
     @media (max-width: 680px) {
-        .detail-panel {
-            overflow: hidden;
+
+        /* Grid: 2 columnas, sin línea vertical del medio */
+        .outlet-page { padding: 2rem 0 200px; }
+
+        .outlet-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            border-left: none !important;
+            border-right: none !important;
         }
+
+        /* Reset bordes desktop, aplicar lógica mobile 2 cols */
+        .outlet-item {
+            border-right: none !important;
+            border-left: none !important;
+            border-bottom: 1px solid #1a1a1a !important;
+            padding: 1.2rem !important;
+        }
+
+        /* separador solo entre columnas (col izq) */
+        .outlet-item:nth-child(odd) {
+            border-right: 1px solid #1a1a1a !important;
+        }
+
+        /* Últimas dos cards sin borde inferior */
+        .outlet-item:nth-last-child(-n+2) {
+            border-bottom: none !important;
+        }
+
+        /* Detalle: sin scroll, columna única */
+        .detail-panel { overflow: hidden; }
 
         .detail-body {
             grid-template-columns: 1fr;
@@ -661,17 +643,22 @@
             height: 100%;
         }
 
+        /* Imagen MUCHO más grande en mobile */
         .detail-left {
             border-right: none;
             border-bottom: 1px solid #1a1a1a;
-            padding: 0.6rem;
+            padding: 1rem 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
         }
 
-        .detail-cuadro-wrap { width: min(28vw, 110px); }
+        .detail-cuadro-wrap {
+            height: min(48vw, 52vh);
+            width: auto;
+            aspect-ratio: 665 / 829;
+        }
 
         .detail-right {
             flex: 1;
@@ -683,7 +670,6 @@
             flex-direction: column;
         }
 
-        /* En mobile los botones vuelven a ancho completo y columna */
         .detail-cta-inline {
             flex-direction: column !important;
             align-items: stretch !important;
@@ -709,13 +695,6 @@
         .detail-marco-label, .detail-thumbs-label { margin-bottom: 0.3rem; }
         .detail-marco-options { gap: 0.5rem; }
     }
-
-    @media (max-height: 500px) and (min-width: 681px) {
-        .detail-header { padding: 0.4rem 1.2rem; }
-        .detail-right { gap: 0.55rem; padding: 0.7rem 1.1rem; }
-        .detail-info-name { font-size: 1rem; }
-        .detail-cuadro-wrap { width: min(36vh, 75%); }
-    }
     </style>
 </head>
 <body>
@@ -740,12 +719,13 @@
 
                 <div class="outlet-grid">
 
+                    <!-- territorio -->
                     <article class="outlet-item" itemscope itemtype="https://schema.org/Product">
-                        <div class="cuadro-wrap" onclick="abrirDetalle('territorio','$3.500','25 x 35 cm',['media/territorio3.jpg','media/territorio4.jpg'])">
-                            <img class="cuadro-obra" src="media/territorio3.jpg" alt="territorio - cuadro original de Luna Curto" loading="lazy" itemprop="image">
+                        <div class="cuadro-wrap" onclick="abrirDetalle('territorio I','$3.500','25 x 35 cm',['media/territorio3.jpg','media/territorio4.jpg'])">
+                            <img class="cuadro-obra" src="media/territorio3.jpg" alt="territorio I - cuadro original de Luna Curto" loading="lazy" itemprop="image">
                             <img class="cuadro-marco" src="media/marcon.png" alt="" aria-hidden="true">
                         </div>
-                        <h2 class="outlet-item-name" itemprop="name">territorio</h2>
+                        <h2 class="outlet-item-name" itemprop="name">territorio I</h2>
                         <div class="outlet-item-details">
                             <span class="outlet-item-medidas">25 x 35 cm</span>
                             <span class="outlet-item-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
@@ -754,16 +734,17 @@
                             </span>
                         </div>
                         <div class="outlet-item-btns">
-                            <button class="btn-quiero" onclick="abrirDetalle('territorio','$3.500','25 x 35 cm',['media/territorio3.jpg','media/territorio4.jpg'])">ver detalle</button>
+                            <button class="btn-quiero" onclick="abrirDetalle('territorio I','$3.500','25 x 35 cm',['media/territorio3.jpg','media/territorio4.jpg'])">ver detalle</button>
                         </div>
                     </article>
 
+                    <!-- territorio (segunda imagen como item aparte) -->
                     <article class="outlet-item" itemscope itemtype="https://schema.org/Product">
-                        <div class="cuadro-wrap" onclick="abrirDetalle('vos','$3.500','25 x 35 cm',['media/vos1.jpg','media/vos2.jpg'])">
-                            <img class="cuadro-obra" src="media/vos1.jpg" alt="vos - cuadro original de Luna Curto" loading="lazy" itemprop="image">
+                        <div class="cuadro-wrap" onclick="abrirDetalle('territorio II','$3.500','25 x 35 cm',['media/territorio4.jpg','media/territorio3.jpg'])">
+                            <img class="cuadro-obra" src="media/territorio4.jpg" alt="territorio II - cuadro original de Luna Curto" loading="lazy" itemprop="image">
                             <img class="cuadro-marco" src="media/marcon.png" alt="" aria-hidden="true">
                         </div>
-                        <h2 class="outlet-item-name" itemprop="name">vos</h2>
+                        <h2 class="outlet-item-name" itemprop="name">territorio II</h2>
                         <div class="outlet-item-details">
                             <span class="outlet-item-medidas">25 x 35 cm</span>
                             <span class="outlet-item-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
@@ -772,16 +753,17 @@
                             </span>
                         </div>
                         <div class="outlet-item-btns">
-                            <button class="btn-quiero" onclick="abrirDetalle('vos','$3.500','25 x 35 cm',['media/vos1.jpg','media/vos2.jpg'])">ver detalle</button>
+                            <button class="btn-quiero" onclick="abrirDetalle('territorio II','$3.500','25 x 35 cm',['media/territorio4.jpg','media/territorio3.jpg'])">ver detalle</button>
                         </div>
                     </article>
 
+                    <!-- vos -->
                     <article class="outlet-item" itemscope itemtype="https://schema.org/Product">
-                        <div class="cuadro-wrap" onclick="abrirDetalle('nn','$3.500','25 x 35 cm',['media/nn1.jpg','media/nn4.jpg'])">
-                            <img class="cuadro-obra" src="media/nn1.jpg" alt="nn - cuadro original de Luna Curto" loading="lazy" itemprop="image">
+                        <div class="cuadro-wrap" onclick="abrirDetalle('vos I','$3.500','25 x 35 cm',['media/vos1.jpg','media/vos2.jpg'])">
+                            <img class="cuadro-obra" src="media/vos1.jpg" alt="vos I - cuadro original de Luna Curto" loading="lazy" itemprop="image">
                             <img class="cuadro-marco" src="media/marcon.png" alt="" aria-hidden="true">
                         </div>
-                        <h2 class="outlet-item-name" itemprop="name">nn</h2>
+                        <h2 class="outlet-item-name" itemprop="name">vos I</h2>
                         <div class="outlet-item-details">
                             <span class="outlet-item-medidas">25 x 35 cm</span>
                             <span class="outlet-item-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
@@ -790,7 +772,64 @@
                             </span>
                         </div>
                         <div class="outlet-item-btns">
-                            <button class="btn-quiero" onclick="abrirDetalle('nn','$3.500','25 x 35 cm',['media/nn1.jpg','media/nn4.jpg'])">ver detalle</button>
+                            <button class="btn-quiero" onclick="abrirDetalle('vos I','$3.500','25 x 35 cm',['media/vos1.jpg','media/vos2.jpg'])">ver detalle</button>
+                        </div>
+                    </article>
+
+                    <!-- vos (segunda imagen) -->
+                    <article class="outlet-item" itemscope itemtype="https://schema.org/Product">
+                        <div class="cuadro-wrap" onclick="abrirDetalle('vos II','$3.500','25 x 35 cm',['media/vos2.jpg','media/vos1.jpg'])">
+                            <img class="cuadro-obra" src="media/vos2.jpg" alt="vos II - cuadro original de Luna Curto" loading="lazy" itemprop="image">
+                            <img class="cuadro-marco" src="media/marcon.png" alt="" aria-hidden="true">
+                        </div>
+                        <h2 class="outlet-item-name" itemprop="name">vos II</h2>
+                        <div class="outlet-item-details">
+                            <span class="outlet-item-medidas">25 x 35 cm</span>
+                            <span class="outlet-item-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <meta itemprop="priceCurrency" content="UYU">
+                                <span itemprop="price" content="3500">$3.500</span>
+                            </span>
+                        </div>
+                        <div class="outlet-item-btns">
+                            <button class="btn-quiero" onclick="abrirDetalle('vos II','$3.500','25 x 35 cm',['media/vos2.jpg','media/vos1.jpg'])">ver detalle</button>
+                        </div>
+                    </article>
+
+                    <!-- nn -->
+                    <article class="outlet-item" itemscope itemtype="https://schema.org/Product">
+                        <div class="cuadro-wrap" onclick="abrirDetalle('nn I','$3.500','25 x 35 cm',['media/nn1.jpg','media/nn4.jpg'])">
+                            <img class="cuadro-obra" src="media/nn1.jpg" alt="nn I - cuadro original de Luna Curto" loading="lazy" itemprop="image">
+                            <img class="cuadro-marco" src="media/marcon.png" alt="" aria-hidden="true">
+                        </div>
+                        <h2 class="outlet-item-name" itemprop="name">nn I</h2>
+                        <div class="outlet-item-details">
+                            <span class="outlet-item-medidas">25 x 35 cm</span>
+                            <span class="outlet-item-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <meta itemprop="priceCurrency" content="UYU">
+                                <span itemprop="price" content="3500">$3.500</span>
+                            </span>
+                        </div>
+                        <div class="outlet-item-btns">
+                            <button class="btn-quiero" onclick="abrirDetalle('nn I','$3.500','25 x 35 cm',['media/nn1.jpg','media/nn4.jpg'])">ver detalle</button>
+                        </div>
+                    </article>
+
+                    <!-- nn II -->
+                    <article class="outlet-item" itemscope itemtype="https://schema.org/Product">
+                        <div class="cuadro-wrap" onclick="abrirDetalle('nn II','$3.500','25 x 35 cm',['media/nn4.jpg','media/nn1.jpg'])">
+                            <img class="cuadro-obra" src="media/nn4.jpg" alt="nn II - cuadro original de Luna Curto" loading="lazy" itemprop="image">
+                            <img class="cuadro-marco" src="media/marcon.png" alt="" aria-hidden="true">
+                        </div>
+                        <h2 class="outlet-item-name" itemprop="name">nn II</h2>
+                        <div class="outlet-item-details">
+                            <span class="outlet-item-medidas">25 x 35 cm</span>
+                            <span class="outlet-item-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <meta itemprop="priceCurrency" content="UYU">
+                                <span itemprop="price" content="3500">$3.500</span>
+                            </span>
+                        </div>
+                        <div class="outlet-item-btns">
+                            <button class="btn-quiero" onclick="abrirDetalle('nn II','$3.500','25 x 35 cm',['media/nn4.jpg','media/nn1.jpg'])">ver detalle</button>
                         </div>
                     </article>
 
@@ -812,28 +851,26 @@
             <div class="detail-left">
                 <div class="detail-cuadro-wrap">
                     <img class="detail-cuadro-obra" id="detail-cuadro-obra" src="" alt="">
-                    <img class="detail-cuadro-marco" id="detail-cuadro-marco" src="media/marcob.png" alt="" aria-hidden="true">
+                    <img class="detail-cuadro-marco" id="detail-cuadro-marco" src="media/marcon.png" alt="" aria-hidden="true">
                 </div>
             </div>
 
             <div class="detail-right">
 
-                <!-- BLOQUE SUPERIOR: nombre + precio -->
                 <div class="detail-info">
                     <h2 class="detail-info-name" id="detail-info-name"></h2>
                     <span class="detail-info-medidas" id="detail-info-medidas"></span>
                     <span class="detail-info-price" id="detail-info-price"></span>
                 </div>
 
-                <!-- BLOQUE INFERIOR: marco + vistas + botones juntos -->
                 <div class="detail-bottom-block">
                     <div class="detail-bottom-left">
                         <div>
                             <span class="detail-marco-label">marco</span>
                             <div class="detail-marco-options">
-                                <button class="marco-btn negro"  id="btn-negro"  onclick="setMarco('negro')"  aria-label="Marco negro"></button>
-                                <button class="marco-btn blanco active" id="btn-blanco" onclick="setMarco('blanco')" aria-label="Marco blanco"></button>
-                                <span class="marco-label-text" id="marco-label-text">blanco</span>
+                                <button class="marco-btn negro active" id="btn-negro"  onclick="setMarco('negro')"  aria-label="Marco negro"></button>
+                                <button class="marco-btn blanco"       id="btn-blanco" onclick="setMarco('blanco')" aria-label="Marco blanco"></button>
+                                <span class="marco-label-text" id="marco-label-text">negro</span>
                             </div>
                         </div>
                         <div>
@@ -854,9 +891,8 @@
     <!-- OVERLAY + MODAL ORDEN -->
     <div class="order-overlay" id="order-overlay" onclick="cerrarOrden()"></div>
 
-    <div class="order-modal" id="order-modal" role="dialog" aria-modal="true" aria-label="Confirmar pedido">
+    <div class="order-modal" id="order-modal" role="dialog" aria-modal="true" aria-label="Pedido">
         <div class="order-modal-header">
-            <h3>confirmar pedido</h3>
             <button class="order-modal-close" onclick="cerrarOrden()">cerrar ×</button>
         </div>
         <div class="order-modal-body">
@@ -894,7 +930,8 @@
             blanco: { top:'9.46%', left:'7.25%',  width:'81.04%', height:'84.75%', ratio:'538 / 708' }
         };
 
-        let marcoActual    = 'blanco';
+        // Marco negro por defecto
+        let marcoActual    = 'negro';
         let cantidadActual = 1;
 
         function abrirDetalle(nombre, precio, medidas, imagenes) {
@@ -921,7 +958,8 @@
                 thumbs.appendChild(btn);
             });
 
-            setMarco('blanco');
+            // Siempre abrir con marco negro
+            setMarco('negro');
             document.getElementById('detail-overlay').classList.add('open');
             document.getElementById('detail-panel').classList.add('open');
             document.body.style.overflow = 'hidden';
@@ -972,14 +1010,31 @@
 
         function abrirOrden(cantidad) {
             cantidadActual = cantidad;
-            const nombre  = document.getElementById('detail-info-name').textContent;
+            const nombre  = document.getElementById('detail-info-name').textContent.toUpperCase();
             const precio  = document.getElementById('detail-info-price').textContent;
             const medidas = document.getElementById('detail-info-medidas').textContent;
 
-            document.getElementById('order-summary-obra').textContent    = nombre;
+            // Calcular el nombre del par (I → II y viceversa)
+            let nombrePar = '';
+            if (nombre.endsWith(' I')) {
+                nombrePar = nombre.slice(0, -1) + 'II';
+            } else if (nombre.endsWith(' II')) {
+                nombrePar = nombre.slice(0, -3) + 'I';
+            } else {
+                nombrePar = nombre;
+            }
+
+            // Precio total para los dos: $3.500 × 2 = $7.000
+            const precioNum = parseInt(precio.replace(/\D/g, ''), 10);
+            const precioTotal = '$' + (precioNum * 2).toLocaleString('es-UY').replace(',', '.');
+
+            document.getElementById('order-summary-obra').textContent = cantidad === 2
+                ? `${nombre} y ${nombrePar}`
+                : nombre;
+
             document.getElementById('order-summary-detalle').textContent = cantidad === 2
-                ? `los dos cuadros · ${medidas} · ${precio} c/u`
-                : `1 cuadro · marco ${marcoActual} · ${medidas} · ${precio}`;
+                ? `los dos · ${medidas} · ${precioTotal}`
+                : `marco ${marcoActual} · ${medidas} · ${precio}`;
 
             const fb = document.getElementById('order-feedback');
             fb.textContent = '';

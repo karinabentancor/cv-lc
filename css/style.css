@@ -678,6 +678,53 @@ figure.effect-julia:hover p {
     filter: blur(0) grayscale(100%);
 }
 
+.participation-images--right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.participation-images--right .participation-image-wrapper {
+    width: 33%;
+}
+
+.participation-images--left {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.participation-images--left .participation-image-wrapper {
+    width: 33%;
+}
+
+@media (max-width: 768px) {
+    .participation-images--right .participation-image-wrapper,
+    .participation-images--left .participation-image-wrapper {
+        width: 100%;
+    }
+}
+
+/* Wrapper de altura automática para imágenes sueltas (ej: El límite) */
+.participation-image-wrapper--auto {
+    height: auto !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+    display: block;
+    padding: 0;
+}
+
+.participation-image-wrapper--auto img {
+    width: auto !important;
+    height: auto !important;
+    max-width: 100%;
+    max-height: 600px;
+    object-fit: contain !important;
+    border-radius: 0 !important;
+    display: block;
+}
+
 /* ── OUTLET ─────────────────────────────────────────────────────────────── */
 
 #page-outlet {
@@ -873,6 +920,10 @@ figure.effect-julia:hover p {
     .participation-image-wrapper {
         height: 300px;
     }
+
+    .participation-image-wrapper--auto {
+        height: auto;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1000,6 +1051,10 @@ figure.effect-julia:hover p {
     
     .participation-image-wrapper {
         height: 350px;
+    }
+
+    .participation-image-wrapper--auto {
+        height: auto;
     }
 
     .content-section {
@@ -1138,6 +1193,10 @@ figure.effect-julia:hover p {
     
     .participation-image-wrapper {
         height: 300px;
+    }
+
+    .participation-image-wrapper--auto {
+        height: auto;
     }
 
     #page-outlet {

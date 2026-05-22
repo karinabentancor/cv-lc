@@ -40,6 +40,186 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .contact-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            max-width: 500px;
+            width: 90%;
+            padding-bottom: 130px;
+            align-items: center;
+        }
+
+        .contact-form-container {
+            width: 100%;
+        }
+
+        .contact-form {
+            width: 100%;
+        }
+
+        .contact-form .input-group {
+            justify-content: flex-start;
+            text-align: left;
+        }
+
+        .contact-form .input-group.justify-content-end {
+            justify-content: flex-end !important;
+        }
+
+        .contact-form .form-control {
+            text-align: left;
+        }
+
+        .contact-form .form-control::placeholder {
+            text-align: left;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
+            gap: 0.35rem;
+            text-align: right;
+        }
+
+        .contact-item {
+            text-align: right;
+        }
+
+        .tm-link-white {
+            text-align: right;
+        }
+
+        .contact-location {
+            font-size: 0.72rem;
+            opacity: 0.6;
+            letter-spacing: 0.08em;
+        }
+
+        .contact-credit {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+            margin-top: 2rem;
+            opacity: 0.35;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-credit:hover {
+            opacity: 0.7;
+        }
+
+        .contact-credit-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            justify-content: flex-end;
+        }
+
+        .contact-credit span {
+            font-size: 0.48rem;
+            color: white;
+            letter-spacing: 0.12em;
+            text-transform: lowercase;
+            white-space: nowrap;
+            font-family: 'Courier New', monospace;
+        }
+
+        .contact-copyright {
+            font-size: 0.42rem;
+            color: white;
+            letter-spacing: 0.1em;
+            text-transform: lowercase;
+            white-space: nowrap;
+            font-family: 'Courier New', monospace;
+            text-align: right;
+        }
+
+        .contact-credit img {
+            height: 38px;
+            width: auto;
+        }
+
+        @media (min-width: 769px) {
+            .contact-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 0;
+                max-width: 860px;
+            }
+
+            .contact-form-container {
+                padding-right: 4rem;
+            }
+
+            .contact-info {
+                padding-left: 4rem;
+            }
+
+            .contact-form .input-group.justify-content-end {
+                justify-content: flex-end !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact-container {
+                padding-bottom: 110px;
+                max-width: 90%;
+            }
+
+            .contact-form-container {
+                order: 1;
+            }
+
+            .contact-info {
+                order: 2;
+                align-items: center;
+                text-align: center;
+            }
+
+            .contact-item {
+                text-align: center;
+            }
+
+            .tm-link-white {
+                text-align: center;
+            }
+
+            .contact-credit {
+                align-items: center;
+                margin-top: 1.5rem;
+            }
+
+            .contact-credit-row {
+                justify-content: center;
+            }
+
+            .contact-copyright {
+                text-align: center;
+            }
+
+            .contact-form .input-group.justify-content-end {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-container {
+                padding-bottom: 100px;
+                max-width: 95%;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="page-container">
@@ -78,6 +258,7 @@
                 <div class="contact-section">
                     <h1 style="position: absolute; left: -9999px;">Contacto - Luna Curto</h1>
                     <div class="contact-container">
+
                         <div class="contact-form-container">
                             <form class="contact-form" id="contact-form">
                                 <div class="input-group tm-mb-30">
@@ -94,16 +275,23 @@
                                 </div>
                             </form>
                         </div>
+
                         <div class="contact-info">
                             <div class="contact-item">
                                 <a href="mailto:lunacurtoc@gmail.com" class="tm-link-white">lunacurtoc@gmail.com</a>
                             </div>
-                            <div class="contact-item tm-mb-45">
-                                <span class="tm-link-white">Montevideo, Uruguay</span>
+                            <div class="contact-item">
+                                <span class="tm-link-white contact-location">Montevideo, Uruguay</span>
                             </div>
-                            <br>
-                            <br>
+                            <div class="contact-credit">
+                                <div class="contact-credit-row">
+                                    <span>desarrollada por</span>
+                                    <img src="media/tutiaestudioW.svg" alt="tutia estudio">
+                                </div>
+                                <span class="contact-copyright">© 2025 luna curto — todos los derechos reservados</span>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </section>

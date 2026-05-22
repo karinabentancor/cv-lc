@@ -523,17 +523,69 @@ figure.effect-julia:hover p {
 
 .contact-info {
     color: white;
-    text-align: center;
+    text-align: right;
 }
 
 .contact-item {
     color: white;
-    text-align: left;
+    text-align: right;
 }
 
 .tm-link-white {
     color: white !important;
+    text-align: right;
+}
+
+#page-5 .contact-container {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0 !important;
+    max-width: 860px !important;
+    width: 90% !important;
+    align-items: center !important;
+    justify-content: unset !important;
+    flex-direction: unset !important;
+    text-align: unset !important;
+}
+
+#page-5 .contact-form-container {
+    padding-right: 4rem;
+    width: 100%;
+    display: block;
+}
+
+#page-5 .contact-form {
+    width: 100%;
+    max-width: unset;
     text-align: left;
+}
+
+#page-5 .contact-form .input-group {
+    justify-content: flex-start;
+    text-align: left;
+}
+
+#page-5 .contact-form .input-group.justify-content-end {
+    justify-content: flex-end !important;
+}
+
+#page-5 .contact-form .form-control {
+    text-align: left;
+}
+
+#page-5 .contact-form .form-control::placeholder {
+    text-align: left;
+}
+
+#page-5 .contact-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 0.35rem;
+    padding-left: 4rem;
+    text-align: right;
+    width: 100%;
 }
 
 .content-section {
@@ -621,6 +673,14 @@ figure.effect-julia:hover p {
     padding: 0;
 }
 
+.poem-left {
+    display: block;
+    text-align: left !important;
+    unicode-bidi: plaintext;
+    padding-left: 0;
+    margin-left: 0;
+}
+
 .participation-item {
     margin-bottom: 8rem;
     scroll-margin-top: 0;
@@ -696,14 +756,6 @@ figure.effect-julia:hover p {
     width: 33%;
 }
 
-@media (max-width: 768px) {
-    .participation-images--right .participation-image-wrapper,
-    .participation-images--left .participation-image-wrapper {
-        width: 100%;
-    }
-}
-
-/* Wrapper de altura automática para imágenes sueltas (ej: El límite) */
 .participation-image-wrapper--auto {
     height: auto !important;
     background: transparent !important;
@@ -724,8 +776,6 @@ figure.effect-julia:hover p {
     border-radius: 0 !important;
     display: block;
 }
-
-/* ── OUTLET ─────────────────────────────────────────────────────────────── */
 
 #page-outlet {
     display: block;
@@ -836,7 +886,41 @@ figure.effect-julia:hover p {
     text-decoration: line-through;
 }
 
-/* ── RESPONSIVE ─────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    #page-5 .contact-container {
+        display: flex !important;
+        flex-direction: column !important;
+        grid-template-columns: unset !important;
+        max-width: 90% !important;
+        gap: 2.5rem !important;
+        padding-bottom: 110px !important;
+    }
+    #page-5 .contact-form-container {
+        order: 1;
+        padding-right: 0;
+        display: flex;
+        justify-content: center;
+    }
+    #page-5 .contact-info {
+        order: 2;
+        padding-left: 0;
+        align-items: center;
+        text-align: center;
+    }
+    #page-5 .contact-form .input-group {
+        justify-content: center;
+    }
+    #page-5 .contact-form .input-group.justify-content-end {
+        justify-content: center !important;
+    }
+}
+
+@media (max-width: 480px) {
+    #page-5 .contact-container {
+        max-width: 95% !important;
+        padding-bottom: 100px !important;
+    }
+}
 
 @media (max-width: 1100px) {
     .navbar-nav {
@@ -856,71 +940,52 @@ figure.effect-julia:hover p {
         justify-content: space-between;
         padding: 0 10px;
     }
-    
     .navbar {
         padding: 10px 15px 6px 15px;
     }
-    
     .navbar-brand img {
         height: 95px;
     }
-    
     .navbar-nav {
         gap: 12px;
     }
-    
     .nav-link {
         font-size: 0.85rem;
         padding: 10px 2px 14px 2px;
     }
-
-    .contact-container {
-        gap: 3rem;
-        max-width: 500px;
-    }
-
     .home-grid {
         grid-template-columns: 1fr;
         height: calc(100vh - 120px);
     }
-
     .images-container {
         display: none;
     }
-
     .video-container {
         width: 100vw;
         height: calc(100vh - 120px);
     }
-
     .gallery-grid {
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 25px;
         padding: 30px 20px;
     }
-
     figure.effect-julia img {
         height: 350px;
     }
-
     .visual-modal-year {
         right: -50px;
         font-size: 1rem;
     }
-
     .content-section {
         padding: 2rem 3rem;
     }
-
     .participation-images {
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
     }
-    
     .participation-image-wrapper {
         height: 300px;
     }
-
     .participation-image-wrapper--auto {
         height: auto;
     }
@@ -928,139 +993,111 @@ figure.effect-julia:hover p {
 
 @media (max-width: 768px) {
     h2 { font-size: 1.5rem; }
-    
     .navbar {
         padding: 10px 10px 6px 10px;
     }
-    
     .nav-container {
         max-width: 100%;
         flex-direction: column;
         gap: 6px;
     }
-    
     .navbar-brand {
         width: 100%;
         text-align: center;
         margin: 0;
     }
-    
     .navbar-brand img {
         height: 75px;
         margin: 0 auto;
     }
-    
     .navbar-nav {
         width: 100%;
         justify-content: center;
         gap: 10px;
         flex-wrap: nowrap;
     }
-    
     .nav-item {
         margin: 0;
     }
-    
     .nav-link {
         font-size: 0.78rem;
         padding: 8px 4px 12px 4px;
         letter-spacing: 0;
     }
-
     .contact-section {
         padding: 1rem;
     }
-
-    .contact-container {
-        gap: 2rem;
-        max-width: 90%;
-        padding-bottom: 110px;
-    }
-
     .contact-form .form-control {
         font-size: 1rem;
         padding: 10px;
         margin-bottom: 1rem;
     }
-
     .btn {
         font-size: 1rem;
         padding: 10px 18px;
     }
-
     .contact-info {
         text-align: center;
         font-size: 0.9rem;
     }
-
     .contact-item {
         text-align: center;
         margin-bottom: 0.5rem;
     }
-
     .tm-link-white {
         text-align: center;
     }
-
     .gallery-grid {
         grid-template-columns: 1fr;
         gap: 25px;
         padding: 20px 15px;
     }
-
     figure.effect-julia img {
         height: 300px;
     }
-
     .visual-modal-content {
         max-width: 92%;
         max-height: 90vh;
         padding: 50px 15px 15px 15px;
     }
-
     .visual-modal-content img {
         max-height: 50vh;
         margin-bottom: 15px;
     }
-
     .visual-modal-close {
         top: 30px;
         right: 30px;
         font-size: 35px;
     }
-
     .visual-modal-info h3 {
         font-size: 1.3rem;
     }
-
     .visual-modal-info p {
         font-size: 1rem;
     }
-
     .visual-modal-year {
         position: static;
         transform: none;
         margin-top: 15px;
         text-align: center;
     }
-
     .participation-images {
         grid-template-columns: 1fr;
         gap: 25px;
     }
-    
     .participation-image-wrapper {
         height: 350px;
     }
-
     .participation-image-wrapper--auto {
         height: auto;
     }
-
+    .participation-images--right .participation-image-wrapper,
+    .participation-images--left .participation-image-wrapper {
+        width: 100%;
+    }
     .content-section {
         padding: 1.5rem 2rem;
     }
-
     #page-outlet {
         padding-bottom: 180px;
     }
@@ -1081,103 +1118,78 @@ figure.effect-julia:hover p {
 
 @media (max-width: 480px) {
     body { font-size: 16px; }
-    
     .navbar {
         padding: 8px 6px 4px 6px;
     }
-    
     .nav-container {
         flex-direction: column;
         gap: 4px;
     }
-    
     .navbar-brand img {
         height: 55px;
     }
-    
     .navbar-nav {
         gap: 4px;
         width: 100%;
         justify-content: space-between;
     }
-    
     .nav-link {
         font-size: 0.68rem;
         padding: 5px 2px 8px 2px;
         letter-spacing: 0;
     }
-
     .contact-section {
         padding: 0.5rem;
     }
-
-    .contact-container {
-        gap: 1.5rem;
-        padding-bottom: 100px;
-        max-width: 95%;
-    }
-
     .contact-form .form-control {
         font-size: 0.95rem;
         padding: 8px;
         margin-bottom: 0.8rem;
     }
-
     .btn {
         font-size: 0.95rem;
         padding: 8px 16px;
     }
-
     .contact-info {
         font-size: 0.85rem;
     }
-
     .content-section {
         margin-top: 20px;
         padding: 1rem;
         margin-bottom: 80px;
     }
-
     .gallery-section {
         margin-top: 20px;
         margin-bottom: 80px;
     }
-
     .gallery-grid {
         grid-template-columns: 1fr;
         gap: 20px;
         padding: 15px 10px;
     }
-
     figure.effect-julia img {
         height: 250px;
     }
-
     .visual-modal-content {
         max-width: 95%;
         max-height: 92vh;
         padding: 45px 10px 10px 10px;
     }
-
     .visual-modal-content img {
         max-height: 45vh;
         margin-bottom: 12px;
     }
-
     .visual-modal-close {
         top: 20px;
         right: 20px;
         font-size: 32px;
     }
-
     .visual-modal-info h3 {
         font-size: 1.15rem;
     }
-
     .visual-modal-info p {
         font-size: 0.9rem;
     }
-
     .visual-modal-year {
         position: static;
         transform: none;
@@ -1185,20 +1197,16 @@ figure.effect-julia:hover p {
         text-align: center;
         font-size: 1rem;
     }
-
     .participation-images {
         grid-template-columns: 1fr;
         gap: 20px;
     }
-    
     .participation-image-wrapper {
         height: 300px;
     }
-
     .participation-image-wrapper--auto {
         height: auto;
     }
-
     #page-outlet {
         padding-bottom: 160px;
     }
@@ -1208,47 +1216,29 @@ figure.effect-julia:hover p {
     .navbar {
         padding: 8px 20px 4px 20px;
     }
-
     .nav-link {
         font-size: 1rem;
         padding: 8px 4px 10px 4px;
     }
-
     .navbar-brand img {
         margin-bottom: 0;
     }
-
     .gallery-grid,
     .content-section {
         justify-content: flex-start;
         align-items: flex-start;
     }
-
     .btn-outline-secondary {
         max-width: 180px;
     }
-
     .contact-section {
-        padding: 4rem 12rem;
+        padding: 0;
     }
-
-    .contact-container {
-        max-width: 550px;
-        gap: 4rem;
-        padding-bottom: 140px;
-        margin-top: 3rem;
-    }
-
-    .contact-form {
-        max-width: 500px;
-    }
-
     .contact-form .form-control {
         font-size: 1.1rem;
         padding: 12px;
         margin-bottom: 1.2rem;
     }
-
     .btn {
         font-size: 1.2rem;
         padding: 11px 20px;

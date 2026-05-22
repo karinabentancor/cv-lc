@@ -536,37 +536,89 @@ figure.effect-julia:hover p {
     text-align: right;
 }
 
+.contact-credit span {
+    font-size: 0.48rem;
+    color: white;
+    letter-spacing: 0.12em;
+    text-transform: lowercase;
+    white-space: nowrap;
+    font-family: 'Courier New', monospace;
+}
+
+.contact-credit img {
+    height: 38px;
+    width: auto;
+}
+
+/* ── CONTACT DESKTOP LAYOUT ─────────────────────────────────────────────── */
+
 #page-5 .contact-container {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    gap: 0 !important;
-    max-width: 860px !important;
-    width: 90% !important;
-    align-items: center !important;
-    justify-content: unset !important;
-    flex-direction: unset !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: center !important;
+    gap: 3rem !important;
+    max-width: 780px !important;
+    width: 88% !important;
     text-align: unset !important;
+    padding-bottom: 130px;
 }
 
 #page-5 .contact-form-container {
-    padding-right: 4rem;
     width: 100%;
     display: block;
+    padding: 0;
 }
 
 #page-5 .contact-form {
     width: 100%;
     max-width: unset;
-    text-align: left;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    column-gap: 2.5rem;
+    row-gap: 1.5rem;
+    align-items: start;
 }
 
-#page-5 .contact-form .input-group {
+#page-5 .contact-form .input-group:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
     justify-content: flex-start;
-    text-align: left;
+}
+
+#page-5 .contact-form .input-group:nth-child(2) {
+    grid-column: 1;
+    grid-row: 2;
+    justify-content: flex-start;
+    align-self: end;
+}
+
+#page-5 .contact-form .input-group:nth-child(1) .form-control,
+#page-5 .contact-form .input-group:nth-child(2) .form-control {
+    margin-bottom: 0;
+}
+
+#page-5 .contact-form .input-group:nth-child(3) {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-self: stretch;
+}
+
+#page-5 .contact-form .input-group:nth-child(3) textarea.form-control {
+    height: 100%;
+    min-height: 0;
+    resize: none;
+    margin-bottom: 0;
 }
 
 #page-5 .contact-form .input-group.justify-content-end {
+    grid-column: 2;
+    grid-row: 3;
     justify-content: flex-end !important;
+    padding-top: 1rem;
+    align-self: start;
+    margin-top: 0;
 }
 
 #page-5 .contact-form .form-control {
@@ -579,14 +631,57 @@ figure.effect-julia:hover p {
 
 #page-5 .contact-info {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    flex-direction: row;
     align-items: flex-end;
-    gap: 0.35rem;
-    padding-left: 4rem;
-    text-align: right;
+    justify-content: flex-start;
+    gap: 2.5rem;
+    text-align: left;
     width: 100%;
+    padding: 0;
 }
+
+#page-5 .contact-info .contact-item {
+    text-align: left;
+}
+
+#page-5 .contact-info .tm-link-white {
+    text-align: left;
+    font-size: 1rem;
+}
+
+#page-5 .contact-info .contact-location {
+    font-size: 0.62rem;
+}
+
+#page-5 .contact-info .contact-credit {
+    margin-top: 0;
+    align-items: flex-end;
+    opacity: 0.35;
+    transition: opacity 0.3s ease;
+}
+
+#page-5 .contact-info .contact-credit:hover {
+    opacity: 0.7;
+}
+
+#page-5 .contact-info .contact-credit-row {
+    justify-content: flex-end;
+}
+
+#page-5 .contact-info .contact-credit span {
+    font-size: 0.55rem;
+}
+
+#page-5 .contact-info .contact-credit img {
+    height: 42px;
+}
+
+#page-5 .contact-info .contact-copyright {
+    text-align: right;
+    font-size: 0.45rem;
+}
+
+/* ── REST OF STYLES ─────────────────────────────────────────────────────── */
 
 .content-section {
     padding: 2rem 6rem;
@@ -886,361 +981,182 @@ figure.effect-julia:hover p {
     text-decoration: line-through;
 }
 
+/* ── RESPONSIVE ─────────────────────────────────────────────────────────── */
+
 @media (max-width: 768px) {
     #page-5 .contact-container {
-        display: flex !important;
         flex-direction: column !important;
-        grid-template-columns: unset !important;
         max-width: 90% !important;
-        gap: 2.5rem !important;
-        padding-bottom: 110px !important;
+        gap: 1.5rem !important;
+        padding-top: 2.5rem !important;
+        padding-bottom: 140px !important;
+        align-items: center !important;
     }
-    #page-5 .contact-form-container {
-        order: 1;
-        padding-right: 0;
+    #page-5 .contact-form {
         display: flex;
+        flex-direction: column;
+        grid-template-columns: unset;
+    }
+    #page-5 .contact-form .input-group:nth-child(1),
+    #page-5 .contact-form .input-group:nth-child(2),
+    #page-5 .contact-form .input-group:nth-child(3) {
+        grid-column: unset;
+        grid-row: unset;
         justify-content: center;
     }
-    #page-5 .contact-info {
-        order: 2;
-        padding-left: 0;
-        align-items: center;
-        text-align: center;
+    #page-5 .contact-form .input-group:nth-child(1) .form-control,
+    #page-5 .contact-form .input-group:nth-child(2) .form-control {
+        margin-bottom: 1.5rem;
     }
-    #page-5 .contact-form .input-group {
-        justify-content: center;
+    #page-5 .contact-form .form-control {
+        height: 48px !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+    #page-5 .contact-form textarea.form-control {
+        height: 48px !important;
+        min-height: 0 !important;
+        overflow-y: auto;
+        resize: none;
+        padding-top: 13px !important;
+        padding-bottom: 13px !important;
+        margin-bottom: 1.5rem;
+        line-height: 1.4;
     }
     #page-5 .contact-form .input-group.justify-content-end {
-        justify-content: center !important;
+        grid-column: unset;
+        grid-row: unset;
+        justify-content: flex-end !important;
+        padding-top: 0;
+    }
+    #page-5 .contact-info {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.05rem;
+        text-align: center;
+    }
+    #page-5 .contact-info .contact-item,
+    #page-5 .contact-info .tm-link-white {
+        text-align: center;
+    }
+    #page-5 .contact-info .contact-location {
+        font-size: 0.52rem !important;
+    }
+    #page-5 .contact-info .contact-credit {
+        align-items: center;
+        margin-top: 1rem;
+    }
+    #page-5 .contact-info .contact-credit-row {
+        justify-content: center;
+    }
+    #page-5 .contact-info .contact-copyright {
+        text-align: center;
     }
 }
 
 @media (max-width: 480px) {
     #page-5 .contact-container {
         max-width: 95% !important;
-        padding-bottom: 100px !important;
+        padding-bottom: 130px !important;
     }
 }
 
 @media (max-width: 1100px) {
-    .navbar-nav {
-        gap: 14px;
-    }
-    .nav-link {
-        font-size: 0.88rem;
-        letter-spacing: 0;
-    }
-    .navbar-brand img {
-        height: 110px;
-    }
+    .navbar-nav { gap: 14px; }
+    .nav-link { font-size: 0.88rem; letter-spacing: 0; }
+    .navbar-brand img { height: 110px; }
 }
 
 @media (max-width: 992px) {
-    .nav-container {
-        justify-content: space-between;
-        padding: 0 10px;
-    }
-    .navbar {
-        padding: 10px 15px 6px 15px;
-    }
-    .navbar-brand img {
-        height: 95px;
-    }
-    .navbar-nav {
-        gap: 12px;
-    }
-    .nav-link {
-        font-size: 0.85rem;
-        padding: 10px 2px 14px 2px;
-    }
-    .home-grid {
-        grid-template-columns: 1fr;
-        height: calc(100vh - 120px);
-    }
-    .images-container {
-        display: none;
-    }
-    .video-container {
-        width: 100vw;
-        height: calc(100vh - 120px);
-    }
-    .gallery-grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 25px;
-        padding: 30px 20px;
-    }
-    figure.effect-julia img {
-        height: 350px;
-    }
-    .visual-modal-year {
-        right: -50px;
-        font-size: 1rem;
-    }
-    .content-section {
-        padding: 2rem 3rem;
-    }
-    .participation-images {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-    }
-    .participation-image-wrapper {
-        height: 300px;
-    }
-    .participation-image-wrapper--auto {
-        height: auto;
-    }
+    .nav-container { justify-content: space-between; padding: 0 10px; }
+    .navbar { padding: 10px 15px 6px 15px; }
+    .navbar-brand img { height: 95px; }
+    .navbar-nav { gap: 12px; }
+    .nav-link { font-size: 0.85rem; padding: 10px 2px 14px 2px; }
+    .home-grid { grid-template-columns: 1fr; height: calc(100vh - 120px); }
+    .images-container { display: none; }
+    .video-container { width: 100vw; height: calc(100vh - 120px); }
+    .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; padding: 30px 20px; }
+    figure.effect-julia img { height: 350px; }
+    .visual-modal-year { right: -50px; font-size: 1rem; }
+    .content-section { padding: 2rem 3rem; }
+    .participation-images { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .participation-image-wrapper { height: 300px; }
+    .participation-image-wrapper--auto { height: auto; }
 }
 
 @media (max-width: 768px) {
     h2 { font-size: 1.5rem; }
-    .navbar {
-        padding: 10px 10px 6px 10px;
-    }
-    .nav-container {
-        max-width: 100%;
-        flex-direction: column;
-        gap: 6px;
-    }
-    .navbar-brand {
-        width: 100%;
-        text-align: center;
-        margin: 0;
-    }
-    .navbar-brand img {
-        height: 75px;
-        margin: 0 auto;
-    }
-    .navbar-nav {
-        width: 100%;
-        justify-content: center;
-        gap: 10px;
-        flex-wrap: nowrap;
-    }
-    .nav-item {
-        margin: 0;
-    }
-    .nav-link {
-        font-size: 0.78rem;
-        padding: 8px 4px 12px 4px;
-        letter-spacing: 0;
-    }
-    .contact-section {
-        padding: 1rem;
-    }
-    .contact-form .form-control {
-        font-size: 1rem;
-        padding: 10px;
-        margin-bottom: 1rem;
-    }
-    .btn {
-        font-size: 1rem;
-        padding: 10px 18px;
-    }
-    .contact-info {
-        text-align: center;
-        font-size: 0.9rem;
-    }
-    .contact-item {
-        text-align: center;
-        margin-bottom: 0.5rem;
-    }
-    .tm-link-white {
-        text-align: center;
-    }
-    .gallery-grid {
-        grid-template-columns: 1fr;
-        gap: 25px;
-        padding: 20px 15px;
-    }
-    figure.effect-julia img {
-        height: 300px;
-    }
-    .visual-modal-content {
-        max-width: 92%;
-        max-height: 90vh;
-        padding: 50px 15px 15px 15px;
-    }
-    .visual-modal-content img {
-        max-height: 50vh;
-        margin-bottom: 15px;
-    }
-    .visual-modal-close {
-        top: 30px;
-        right: 30px;
-        font-size: 35px;
-    }
-    .visual-modal-info h3 {
-        font-size: 1.3rem;
-    }
-    .visual-modal-info p {
-        font-size: 1rem;
-    }
-    .visual-modal-year {
-        position: static;
-        transform: none;
-        margin-top: 15px;
-        text-align: center;
-    }
-    .participation-images {
-        grid-template-columns: 1fr;
-        gap: 25px;
-    }
-    .participation-image-wrapper {
-        height: 350px;
-    }
-    .participation-image-wrapper--auto {
-        height: auto;
-    }
+    .navbar { padding: 10px 10px 6px 10px; }
+    .nav-container { max-width: 100%; flex-direction: column; gap: 6px; }
+    .navbar-brand { width: 100%; text-align: center; margin: 0; }
+    .navbar-brand img { height: 75px; margin: 0 auto; }
+    .navbar-nav { width: 100%; justify-content: center; gap: 10px; flex-wrap: nowrap; }
+    .nav-item { margin: 0; }
+    .nav-link { font-size: 0.78rem; padding: 8px 4px 12px 4px; letter-spacing: 0; }
+    .contact-section { padding: 1rem; }
+    .contact-form .form-control { font-size: 1rem; padding: 10px; margin-bottom: 1rem; }
+    .btn { font-size: 1rem; padding: 10px 18px; }
+    .contact-info { text-align: center; font-size: 0.9rem; }
+    .contact-item { text-align: center; margin-bottom: 0.5rem; }
+    .tm-link-white { text-align: center; }
+    .gallery-grid { grid-template-columns: 1fr; gap: 25px; padding: 20px 15px; }
+    figure.effect-julia img { height: 300px; }
+    .visual-modal-content { max-width: 92%; max-height: 90vh; padding: 50px 15px 15px 15px; }
+    .visual-modal-content img { max-height: 50vh; margin-bottom: 15px; }
+    .visual-modal-close { top: 30px; right: 30px; font-size: 35px; }
+    .visual-modal-info h3 { font-size: 1.3rem; }
+    .visual-modal-info p { font-size: 1rem; }
+    .visual-modal-year { position: static; transform: none; margin-top: 15px; text-align: center; }
+    .participation-images { grid-template-columns: 1fr; gap: 25px; }
+    .participation-image-wrapper { height: 350px; }
+    .participation-image-wrapper--auto { height: auto; }
     .participation-images--right .participation-image-wrapper,
-    .participation-images--left .participation-image-wrapper {
-        width: 100%;
-    }
-    .content-section {
-        padding: 1.5rem 2rem;
-    }
-    #page-outlet {
-        padding-bottom: 180px;
-    }
+    .participation-images--left .participation-image-wrapper { width: 100%; }
+    .content-section { padding: 1.5rem 2rem; }
+    #page-outlet { padding-bottom: 180px; }
 }
 
 @media (max-width: 540px) {
-    .navbar-nav {
-        gap: 6px;
-    }
-    .nav-link {
-        font-size: 0.72rem;
-        padding: 6px 3px 10px 3px;
-    }
-    .navbar-brand img {
-        height: 65px;
-    }
+    .navbar-nav { gap: 6px; }
+    .nav-link { font-size: 0.72rem; padding: 6px 3px 10px 3px; }
+    .navbar-brand img { height: 65px; }
 }
 
 @media (max-width: 480px) {
     body { font-size: 16px; }
-    .navbar {
-        padding: 8px 6px 4px 6px;
-    }
-    .nav-container {
-        flex-direction: column;
-        gap: 4px;
-    }
-    .navbar-brand img {
-        height: 55px;
-    }
-    .navbar-nav {
-        gap: 4px;
-        width: 100%;
-        justify-content: space-between;
-    }
-    .nav-link {
-        font-size: 0.68rem;
-        padding: 5px 2px 8px 2px;
-        letter-spacing: 0;
-    }
-    .contact-section {
-        padding: 0.5rem;
-    }
-    .contact-form .form-control {
-        font-size: 0.95rem;
-        padding: 8px;
-        margin-bottom: 0.8rem;
-    }
-    .btn {
-        font-size: 0.95rem;
-        padding: 8px 16px;
-    }
-    .contact-info {
-        font-size: 0.85rem;
-    }
-    .content-section {
-        margin-top: 20px;
-        padding: 1rem;
-        margin-bottom: 80px;
-    }
-    .gallery-section {
-        margin-top: 20px;
-        margin-bottom: 80px;
-    }
-    .gallery-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        padding: 15px 10px;
-    }
-    figure.effect-julia img {
-        height: 250px;
-    }
-    .visual-modal-content {
-        max-width: 95%;
-        max-height: 92vh;
-        padding: 45px 10px 10px 10px;
-    }
-    .visual-modal-content img {
-        max-height: 45vh;
-        margin-bottom: 12px;
-    }
-    .visual-modal-close {
-        top: 20px;
-        right: 20px;
-        font-size: 32px;
-    }
-    .visual-modal-info h3 {
-        font-size: 1.15rem;
-    }
-    .visual-modal-info p {
-        font-size: 0.9rem;
-    }
-    .visual-modal-year {
-        position: static;
-        transform: none;
-        margin-top: 10px;
-        text-align: center;
-        font-size: 1rem;
-    }
-    .participation-images {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    .participation-image-wrapper {
-        height: 300px;
-    }
-    .participation-image-wrapper--auto {
-        height: auto;
-    }
-    #page-outlet {
-        padding-bottom: 160px;
-    }
+    .navbar { padding: 8px 6px 4px 6px; }
+    .nav-container { flex-direction: column; gap: 4px; }
+    .navbar-brand img { height: 55px; }
+    .navbar-nav { gap: 4px; width: 100%; justify-content: space-between; }
+    .nav-link { font-size: 0.68rem; padding: 5px 2px 8px 2px; letter-spacing: 0; }
+    .contact-section { padding: 0.5rem; }
+    .contact-form .form-control { font-size: 0.95rem; padding: 8px; margin-bottom: 0.8rem; }
+    .btn { font-size: 0.95rem; padding: 8px 16px; }
+    .contact-info { font-size: 0.85rem; }
+    .content-section { margin-top: 20px; padding: 1rem; margin-bottom: 80px; }
+    .gallery-section { margin-top: 20px; margin-bottom: 80px; }
+    .gallery-grid { grid-template-columns: 1fr; gap: 20px; padding: 15px 10px; }
+    figure.effect-julia img { height: 250px; }
+    .visual-modal-content { max-width: 95%; max-height: 92vh; padding: 45px 10px 10px 10px; }
+    .visual-modal-content img { max-height: 45vh; margin-bottom: 12px; }
+    .visual-modal-close { top: 20px; right: 20px; font-size: 32px; }
+    .visual-modal-info h3 { font-size: 1.15rem; }
+    .visual-modal-info p { font-size: 0.9rem; }
+    .visual-modal-year { position: static; transform: none; margin-top: 10px; text-align: center; font-size: 1rem; }
+    .participation-images { grid-template-columns: 1fr; gap: 20px; }
+    .participation-image-wrapper { height: 300px; }
+    .participation-image-wrapper--auto { height: auto; }
+    #page-outlet { padding-bottom: 160px; }
 }
 
 @media (min-width: 1200px) {
-    .navbar {
-        padding: 8px 20px 4px 20px;
-    }
-    .nav-link {
-        font-size: 1rem;
-        padding: 8px 4px 10px 4px;
-    }
-    .navbar-brand img {
-        margin-bottom: 0;
-    }
-    .gallery-grid,
-    .content-section {
-        justify-content: flex-start;
-        align-items: flex-start;
-    }
-    .btn-outline-secondary {
-        max-width: 180px;
-    }
-    .contact-section {
-        padding: 0;
-    }
-    .contact-form .form-control {
-        font-size: 1.1rem;
-        padding: 12px;
-        margin-bottom: 1.2rem;
-    }
-    .btn {
-        font-size: 1.2rem;
-        padding: 11px 20px;
-    }
+    .navbar { padding: 8px 20px 4px 20px; }
+    .nav-link { font-size: 1rem; padding: 8px 4px 10px 4px; }
+    .navbar-brand img { margin-bottom: 0; }
+    .gallery-grid, .content-section { justify-content: flex-start; align-items: flex-start; }
+    .btn-outline-secondary { max-width: 180px; }
+    .contact-section { padding: 0; }
+    .contact-form .form-control { font-size: 1.1rem; padding: 12px; margin-bottom: 1.2rem; }
+    .btn { font-size: 1.2rem; padding: 11px 20px; }
 }
